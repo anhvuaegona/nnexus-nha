@@ -1,0 +1,828 @@
+{
+  "company": {
+    "name": "CTN NEXUS COMPANY LIMITED",
+    "address": "NO. 17, 192 PHAM DUC SON, PHU DINH WARD, HOCHIMINH CITY, VIETNAM",
+    "tel": "+84(0)976856365",
+    "email": "Anny.ctnnexus@gmail.com",
+    "brand_quote": "Our pots are meticulously handcrafted by skilled artisans in Vietnam, employing traditional techniques passed down through generations. Fired at high temperatures exceeding 1100°C, subtle variations in colour, texture, and detail naturally emerge, ensuring that no two pieces are exactly alike. Each vessel is not merely a garden element, but a unique work of art that celebrates the timeless beauty of hand-wrought pottery."
+  },
+  "home_sliders": [
+    "/images/home_banner_1.jpg",
+    "/images/home_banner_2.jpg",
+    "/images/home_banner_3.jpg",
+    "/images/home_banner_4.jpg",
+    "/images/home_banner_5.jpg"
+  ],
+  "categories": [
+    {
+      "id": "glazed-ceramic",
+      "title": "Glazed Ceramic Planters",
+      "subtitle": "Hand-glazed stoneware fired at 1100°C for lustrous, rich finishes",
+      "description": "Exquisite handcrafted glazed ceramic planters featuring deep rich colors, glossy finishes, and superior weather resistance for luxury gardens and interiors.",
+      "cover_image": "/images/cat_cover_glazed-ceramic.jpg",
+      "products": [
+        {
+          "id": "prod-1",
+          "code": "NGC0005",
+          "name": "NGC0005-Tall Tapered Planter",
+          "category_id": "glazed-ceramic",
+          "category_title": "Glazed Ceramic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Glazed Ceramic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_glazed-ceramic_1_1.jpg",
+            "/images/prod_glazed-ceramic_1_2.jpg",
+            "/images/prod_glazed-ceramic_1_3.jpg",
+            "/images/prod_glazed-ceramic_1_4.jpg",
+            "/images/prod_glazed-ceramic_1_5.jpg",
+            "/images/prod_glazed-ceramic_1_6.jpg"
+          ]
+        },
+        {
+          "id": "prod-2",
+          "code": "NGC0006",
+          "name": "NGC0006-Conical Planter",
+          "category_id": "glazed-ceramic",
+          "category_title": "Glazed Ceramic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Glazed Ceramic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_glazed-ceramic_2_1.png",
+            "/images/prod_glazed-ceramic_2_2.png",
+            "/images/prod_glazed-ceramic_2_3.png",
+            "/images/prod_glazed-ceramic_2_4.png",
+            "/images/prod_glazed-ceramic_2_5.png"
+          ]
+        },
+        {
+          "id": "prod-3",
+          "code": "NGC0006",
+          "name": "NGC0006-Tall Tapered Planter",
+          "category_id": "glazed-ceramic",
+          "category_title": "Glazed Ceramic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Glazed Ceramic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_glazed-ceramic_3_1.jpg",
+            "/images/prod_glazed-ceramic_3_2.jpg",
+            "/images/prod_glazed-ceramic_3_3.jpg",
+            "/images/prod_glazed-ceramic_3_4.jpg",
+            "/images/prod_glazed-ceramic_3_5.jpg",
+            "/images/prod_glazed-ceramic_3_6.jpg",
+            "/images/prod_glazed-ceramic_3_7.jpg",
+            "/images/prod_glazed-ceramic_3_8.jpg"
+          ]
+        },
+        {
+          "id": "prod-4",
+          "code": "NGC0009",
+          "name": "NGC0009-Tall Tapered Planter",
+          "category_id": "glazed-ceramic",
+          "category_title": "Glazed Ceramic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Glazed Ceramic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_glazed-ceramic_4_1.png",
+            "/images/prod_glazed-ceramic_4_2.png",
+            "/images/prod_glazed-ceramic_4_3.png",
+            "/images/prod_glazed-ceramic_4_4.png"
+          ]
+        },
+        {
+          "id": "prod-5",
+          "code": "NGC0016",
+          "name": "NGC0016-Tapered Planter",
+          "category_id": "glazed-ceramic",
+          "category_title": "Glazed Ceramic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Glazed Ceramic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_glazed-ceramic_5_1.jpg",
+            "/images/prod_glazed-ceramic_5_2.png",
+            "/images/prod_glazed-ceramic_5_3.png",
+            "/images/prod_glazed-ceramic_5_4.png",
+            "/images/prod_glazed-ceramic_5_5.jpg",
+            "/images/prod_glazed-ceramic_5_6.png",
+            "/images/prod_glazed-ceramic_5_7.jpg",
+            "/images/prod_glazed-ceramic_5_8.png",
+            "/images/prod_glazed-ceramic_5_9.png",
+            "/images/prod_glazed-ceramic_5_10.png",
+            "/images/prod_glazed-ceramic_5_11.png",
+            "/images/prod_glazed-ceramic_5_12.png",
+            "/images/prod_glazed-ceramic_5_13.jpg",
+            "/images/prod_glazed-ceramic_5_14.jpg",
+            "/images/prod_glazed-ceramic_5_15.jpg",
+            "/images/prod_glazed-ceramic_5_16.jpg",
+            "/images/prod_glazed-ceramic_5_17.jpg",
+            "/images/prod_glazed-ceramic_5_18.jpg",
+            "/images/prod_glazed-ceramic_5_19.jpg",
+            "/images/prod_glazed-ceramic_5_20.jpg",
+            "/images/prod_glazed-ceramic_5_21.jpg"
+          ]
+        },
+        {
+          "id": "prod-6",
+          "code": "NGC5001",
+          "name": "NGC5001-Cup planter",
+          "category_id": "glazed-ceramic",
+          "category_title": "Glazed Ceramic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Glazed Ceramic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_glazed-ceramic_6_1.jpg",
+            "/images/prod_glazed-ceramic_6_2.jpg"
+          ]
+        },
+        {
+          "id": "prod-7",
+          "code": "NGC5008",
+          "name": "NGC5008-Cylinder planter",
+          "category_id": "glazed-ceramic",
+          "category_title": "Glazed Ceramic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Glazed Ceramic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_glazed-ceramic_7_1.jpg",
+            "/images/prod_glazed-ceramic_7_2.jpg",
+            "/images/prod_glazed-ceramic_7_3.jpg",
+            "/images/prod_glazed-ceramic_7_4.jpg"
+          ]
+        },
+        {
+          "id": "prod-8",
+          "code": "NGC5011",
+          "name": "NGC5011-Tapered planter",
+          "category_id": "glazed-ceramic",
+          "category_title": "Glazed Ceramic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Glazed Ceramic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_glazed-ceramic_8_1.jpg",
+            "/images/prod_glazed-ceramic_8_2.jpg",
+            "/images/prod_glazed-ceramic_8_3.jpg",
+            "/images/prod_glazed-ceramic_8_4.jpg"
+          ]
+        },
+        {
+          "id": "prod-9",
+          "code": "NGC5014",
+          "name": "NGC5014-Round planter",
+          "category_id": "glazed-ceramic",
+          "category_title": "Glazed Ceramic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Glazed Ceramic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_glazed-ceramic_9_1.png",
+            "/images/prod_glazed-ceramic_9_2.jpg",
+            "/images/prod_glazed-ceramic_9_3.jpg",
+            "/images/prod_glazed-ceramic_9_4.jpg"
+          ]
+        },
+        {
+          "id": "prod-10",
+          "code": "NGC5016",
+          "name": "NGC5016-Cube planter",
+          "category_id": "glazed-ceramic",
+          "category_title": "Glazed Ceramic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Glazed Ceramic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_glazed-ceramic_10_1.jpg",
+            "/images/prod_glazed-ceramic_10_2.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "giant-planters",
+      "title": "Giant Planters",
+      "subtitle": "Monumental, architectural vessels for commercial & estate landscapes",
+      "description": "Dramatic large-scale urns and giant bowls engineered to make a bold architectural statement in grand entryways, commercial plazas, and expansive gardens.",
+      "cover_image": "/images/cat_cover_giant-planters.jpg",
+      "products": [
+        {
+          "id": "prod-11",
+          "code": "NGP0001",
+          "name": "NGP0001-Roll Rim Planter",
+          "category_id": "giant-planters",
+          "category_title": "Giant Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Giant",
+          "in_stock": false,
+          "images": [
+            "/images/prod_giant-planters_11_1.jpg",
+            "/images/prod_giant-planters_11_2.jpg",
+            "/images/prod_giant-planters_11_3.jpg",
+            "/images/prod_giant-planters_11_4.jpg",
+            "/images/prod_giant-planters_11_5.jpg"
+          ]
+        },
+        {
+          "id": "prod-12",
+          "code": "NGP0003",
+          "name": "NGP0003-Cup planter",
+          "category_id": "giant-planters",
+          "category_title": "Giant Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Giant",
+          "in_stock": true,
+          "images": [
+            "/images/prod_giant-planters_12_1.jpg",
+            "/images/prod_giant-planters_12_2.jpg"
+          ]
+        },
+        {
+          "id": "prod-13",
+          "code": "NGP0005",
+          "name": "NGP0005-Round Planter",
+          "category_id": "giant-planters",
+          "category_title": "Giant Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Giant",
+          "in_stock": false,
+          "images": [
+            "/images/prod_giant-planters_13_1.png",
+            "/images/prod_giant-planters_13_2.png",
+            "/images/prod_giant-planters_13_3.png"
+          ]
+        },
+        {
+          "id": "prod-14",
+          "code": "NGP0006",
+          "name": "NGP0006-Round Planter",
+          "category_id": "giant-planters",
+          "category_title": "Giant Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Giant",
+          "in_stock": true,
+          "images": [
+            "/images/prod_giant-planters_14_1.jpg",
+            "/images/prod_giant-planters_14_2.jpg",
+            "/images/prod_giant-planters_14_3.jpg"
+          ]
+        },
+        {
+          "id": "prod-15",
+          "code": "NGP0011",
+          "name": "NGP0011-Urn Planter",
+          "category_id": "giant-planters",
+          "category_title": "Giant Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Giant",
+          "in_stock": false,
+          "images": [
+            "/images/prod_giant-planters_15_1.jpg"
+          ]
+        },
+        {
+          "id": "prod-16",
+          "code": "NGP0015",
+          "name": "NGP0015-Urn Planter",
+          "category_id": "giant-planters",
+          "category_title": "Giant Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Giant",
+          "in_stock": true,
+          "images": [
+            "/images/prod_giant-planters_16_1.jpg"
+          ]
+        },
+        {
+          "id": "prod-17",
+          "code": "NGP0020",
+          "name": "NGP0020-Round Planter",
+          "category_id": "giant-planters",
+          "category_title": "Giant Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Giant",
+          "in_stock": false,
+          "images": [
+            "/images/prod_giant-planters_17_1.jpg",
+            "/images/prod_giant-planters_17_2.jpg",
+            "/images/prod_giant-planters_17_3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atlantic-planters",
+      "title": "Atlantic Planters",
+      "subtitle": "Rustic weathered textures reminiscent of sunken ancient amphorae",
+      "description": "Distinctive ocean-weathered aesthetic crafted with rugged, volcanic surfaces and organic textures that evoke timeless Mediterranean history.",
+      "cover_image": "/images/cat_cover_atlantic-planters.jpg",
+      "products": [
+        {
+          "id": "prod-18",
+          "code": "NAT001",
+          "name": "NAT001-Tapered planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_atlantic-planters_18_1.jpg",
+            "/images/prod_atlantic-planters_18_2.jpg",
+            "/images/prod_atlantic-planters_18_3.jpg",
+            "/images/prod_atlantic-planters_18_4.jpg",
+            "/images/prod_atlantic-planters_18_5.jpg",
+            "/images/prod_atlantic-planters_18_6.jpg",
+            "/images/prod_atlantic-planters_18_7.jpg"
+          ]
+        },
+        {
+          "id": "prod-19",
+          "code": "NAT003",
+          "name": "NAT003-Cup planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": false,
+          "images": [
+            "/images/prod_atlantic-planters_19_1.jpg",
+            "/images/prod_atlantic-planters_19_2.jpg"
+          ]
+        },
+        {
+          "id": "prod-20",
+          "code": "NAT004",
+          "name": "NAT004-Round planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_atlantic-planters_20_1.jpg",
+            "/images/prod_atlantic-planters_20_2.jpg",
+            "/images/prod_atlantic-planters_20_3.jpg"
+          ]
+        },
+        {
+          "id": "prod-21",
+          "code": "NAT006",
+          "name": "NAT006-Belly planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": false,
+          "images": [
+            "/images/prod_atlantic-planters_21_1.jpg",
+            "/images/prod_atlantic-planters_21_2.jpg",
+            "/images/prod_atlantic-planters_21_3.jpg",
+            "/images/prod_atlantic-planters_21_4.jpg",
+            "/images/prod_atlantic-planters_21_5.jpg"
+          ]
+        },
+        {
+          "id": "prod-22",
+          "code": "NAT015",
+          "name": "NAT015-Cylinder planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_atlantic-planters_22_1.jpg",
+            "/images/prod_atlantic-planters_22_2.jpg",
+            "/images/prod_atlantic-planters_22_3.jpg",
+            "/images/prod_atlantic-planters_22_4.jpg"
+          ]
+        },
+        {
+          "id": "prod-23",
+          "code": "NAT017",
+          "name": "NAT017-Belly planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": false,
+          "images": [
+            "/images/prod_atlantic-planters_23_1.jpg",
+            "/images/prod_atlantic-planters_23_2.jpg",
+            "/images/prod_atlantic-planters_23_3.jpg",
+            "/images/prod_atlantic-planters_23_4.jpg"
+          ]
+        },
+        {
+          "id": "prod-24",
+          "code": "NAT021",
+          "name": "NAT021-Urn planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_atlantic-planters_24_1.jpg",
+            "/images/prod_atlantic-planters_24_2.jpg",
+            "/images/prod_atlantic-planters_24_3.jpg",
+            "/images/prod_atlantic-planters_24_4.jpg",
+            "/images/prod_atlantic-planters_24_5.jpg"
+          ]
+        },
+        {
+          "id": "prod-25",
+          "code": "NAT030",
+          "name": "NAT030-Round planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": false,
+          "images": [
+            "/images/prod_atlantic-planters_25_1.png"
+          ]
+        },
+        {
+          "id": "prod-26",
+          "code": "NAT034",
+          "name": "NAT034-Cup planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_atlantic-planters_26_1.jpg",
+            "/images/prod_atlantic-planters_26_2.jpg",
+            "/images/prod_atlantic-planters_26_3.jpg",
+            "/images/prod_atlantic-planters_26_4.jpg",
+            "/images/prod_atlantic-planters_26_5.jpg",
+            "/images/prod_atlantic-planters_26_6.jpg"
+          ]
+        },
+        {
+          "id": "prod-27",
+          "code": "NAT035",
+          "name": "NAT035-Urn planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": false,
+          "images": [
+            "/images/prod_atlantic-planters_27_1.jpg"
+          ]
+        },
+        {
+          "id": "prod-28",
+          "code": "NAT037",
+          "name": "NAT037-Round planter",
+          "category_id": "atlantic-planters",
+          "category_title": "Atlantic Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Atlantic",
+          "in_stock": true,
+          "images": [
+            "/images/prod_atlantic-planters_28_1.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "terracotta-planters",
+      "title": "Terracotta Planters",
+      "subtitle": "Classic Italian & Vietnamese earthenware in warm natural clays",
+      "description": "Traditional porous clay planters offering natural breathability for roots, developing a beautiful aged patina over seasons of outdoor living.",
+      "cover_image": "/images/cat_cover_terracotta-planters.jpg",
+      "products": [
+        {
+          "id": "prod-29",
+          "code": "NTR0001",
+          "name": "NTR0001-Tapered Planter",
+          "category_id": "terracotta-planters",
+          "category_title": "Terracotta Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Terracotta",
+          "in_stock": false,
+          "images": [
+            "/images/prod_terracotta-planters_29_1.jpg",
+            "/images/prod_terracotta-planters_29_2.jpg",
+            "/images/prod_terracotta-planters_29_3.jpg",
+            "/images/prod_terracotta-planters_29_4.jpg",
+            "/images/prod_terracotta-planters_29_5.jpg",
+            "/images/prod_terracotta-planters_29_6.jpg",
+            "/images/prod_terracotta-planters_29_7.jpg"
+          ]
+        },
+        {
+          "id": "prod-30",
+          "code": "NTR0004",
+          "name": "NTR0004-Round Planter",
+          "category_id": "terracotta-planters",
+          "category_title": "Terracotta Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Terracotta",
+          "in_stock": true,
+          "images": [
+            "/images/prod_terracotta-planters_30_1.jpg",
+            "/images/prod_terracotta-planters_30_2.jpg"
+          ]
+        },
+        {
+          "id": "prod-31",
+          "code": "NTR0007",
+          "name": "NTR0007-Square Planter",
+          "category_id": "terracotta-planters",
+          "category_title": "Terracotta Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Terracotta",
+          "in_stock": false,
+          "images": [
+            "/images/prod_terracotta-planters_31_1.jpg"
+          ]
+        },
+        {
+          "id": "prod-32",
+          "code": "NTR0009",
+          "name": "NTR0009-Pedestal Urn Planter",
+          "category_id": "terracotta-planters",
+          "category_title": "Terracotta Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Terracotta",
+          "in_stock": true,
+          "images": [
+            "/images/prod_terracotta-planters_32_1.jpg"
+          ]
+        },
+        {
+          "id": "prod-33",
+          "code": "NTR0012",
+          "name": "NTR0012-Festoon Planter",
+          "category_id": "terracotta-planters",
+          "category_title": "Terracotta Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Terracotta",
+          "in_stock": false,
+          "images": [
+            "/images/prod_terracotta-planters_33_1.png"
+          ]
+        },
+        {
+          "id": "prod-34",
+          "code": "NTR0015",
+          "name": "NTR0015-Strawberry Planter",
+          "category_id": "terracotta-planters",
+          "category_title": "Terracotta Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Terracotta",
+          "in_stock": true,
+          "images": [
+            "/images/prod_terracotta-planters_34_1.jpg",
+            "/images/prod_terracotta-planters_34_2.jpg"
+          ]
+        },
+        {
+          "id": "prod-35",
+          "code": "NTR0029",
+          "name": "NTR0029-Ovoid Planter",
+          "category_id": "terracotta-planters",
+          "category_title": "Terracotta Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Terracotta",
+          "in_stock": false,
+          "images": [
+            "/images/prod_terracotta-planters_35_1.jpg",
+            "/images/prod_terracotta-planters_35_2.jpg"
+          ]
+        },
+        {
+          "id": "prod-36",
+          "code": "NTR0030",
+          "name": "NTR0030-Traditional Urn Planter",
+          "category_id": "terracotta-planters",
+          "category_title": "Terracotta Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Terracotta",
+          "in_stock": true,
+          "images": [
+            "/images/prod_terracotta-planters_36_1.jpg",
+            "/images/prod_terracotta-planters_36_2.jpg"
+          ]
+        },
+        {
+          "id": "prod-37",
+          "code": "NTR0042",
+          "name": "NTR0042-Conical Planter",
+          "category_id": "terracotta-planters",
+          "category_title": "Terracotta Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Terracotta",
+          "in_stock": false,
+          "images": [
+            "/images/prod_terracotta-planters_37_1.jpg",
+            "/images/prod_terracotta-planters_37_2.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dark-clay-planters",
+      "title": "Dark Clay Planters",
+      "subtitle": "Modern dark clay stoneware with earthy basalt and charcoal tones",
+      "description": "Sleek, minimalist dark stoneware planters with tactile matte surfaces, bringing sophisticated contemporary elegance to high-end landscape designs.",
+      "cover_image": "/images/cat_cover_dark-clay-planters.jpg",
+      "products": [
+        {
+          "id": "prod-38",
+          "code": "NDC0002",
+          "name": "NDC0002-Round Planter",
+          "category_id": "dark-clay-planters",
+          "category_title": "Dark Clay Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Dark Clay",
+          "in_stock": true,
+          "images": [
+            "/images/prod_dark-clay-planters_38_1.jpg",
+            "/images/prod_dark-clay-planters_38_2.jpg",
+            "/images/prod_dark-clay-planters_38_3.jpg",
+            "/images/prod_dark-clay-planters_38_4.jpg"
+          ]
+        },
+        {
+          "id": "prod-39",
+          "code": "NDC0003",
+          "name": "NDC0003-Round Planter",
+          "category_id": "dark-clay-planters",
+          "category_title": "Dark Clay Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Dark Clay",
+          "in_stock": false,
+          "images": [
+            "/images/prod_dark-clay-planters_39_1.jpg",
+            "/images/prod_dark-clay-planters_39_2.jpg",
+            "/images/prod_dark-clay-planters_39_3.jpg",
+            "/images/prod_dark-clay-planters_39_4.jpg"
+          ]
+        },
+        {
+          "id": "prod-40",
+          "code": "NDC0007",
+          "name": "NDC0007-Round Planter",
+          "category_id": "dark-clay-planters",
+          "category_title": "Dark Clay Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Dark Clay",
+          "in_stock": true,
+          "images": [
+            "/images/prod_dark-clay-planters_40_1.jpg",
+            "/images/prod_dark-clay-planters_40_2.jpg"
+          ]
+        },
+        {
+          "id": "prod-41",
+          "code": "NDC0015",
+          "name": "NDC0015-Round Planter",
+          "category_id": "dark-clay-planters",
+          "category_title": "Dark Clay Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Dark Clay",
+          "in_stock": false,
+          "images": [
+            "/images/prod_dark-clay-planters_41_1.jpg",
+            "/images/prod_dark-clay-planters_41_2.jpg",
+            "/images/prod_dark-clay-planters_41_3.jpg",
+            "/images/prod_dark-clay-planters_41_4.jpg"
+          ]
+        },
+        {
+          "id": "prod-42",
+          "code": "NDC0017",
+          "name": "NDC0017-Round Planter",
+          "category_id": "dark-clay-planters",
+          "category_title": "Dark Clay Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Dark Clay",
+          "in_stock": true,
+          "images": [
+            "/images/prod_dark-clay-planters_42_1.jpg",
+            "/images/prod_dark-clay-planters_42_2.jpg"
+          ]
+        },
+        {
+          "id": "prod-43",
+          "code": "NDC0019",
+          "name": "NDC0019-Bowl Planter",
+          "category_id": "dark-clay-planters",
+          "category_title": "Dark Clay Planters",
+          "dimensions": "Custom Sizes Available",
+          "finish": "Hand-crafted Artisanal Finish",
+          "firing_temp": "1100°C High Fired",
+          "material": "Dark Clay",
+          "in_stock": false,
+          "images": [
+            "/images/prod_dark-clay-planters_43_1.jpg",
+            "/images/prod_dark-clay-planters_43_2.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fiberstone-cement",
+      "title": "Fiberstone & Cement Pots",
+      "subtitle": "Lightweight high-strength composite pots & architectural concrete",
+      "description": "Modern lightweight composite planters combining pulverized stone and fiberglass for sleek industrial designs with effortless mobility.",
+      "cover_image": "/images/cat_cover_fiberstone-cement.jpg",
+      "products": []
+    }
+  ]
+}
