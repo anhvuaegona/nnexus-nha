@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomeView from './components/HomeView';
@@ -15,6 +15,7 @@ export default function App() {
 
   // Active view tab: 'home' | 'collection' | 'stock-list' | 'visit'
   const [currentTab, setCurrentTab] = useState('home');
+  const [selectedCategoryId, setSelectedCategoryId] = useState('all');
 
   // Search query state
   const [searchQuery, setSearchQuery] = useState('');
@@ -34,6 +35,18 @@ export default function App() {
 
   // Load initial data from data.json
   useEffect(() => {
+    const savedCatalog = localStorage.getItem('ctn-nexus-catalog-v1');
+    if (savedCatalog) {
+      try {
+        setData(JSON.parse(savedCatalog));
+        setLoading(false);
+        return;
+      } catch (error) {
+        console.warn('Could not restore saved catalog:', error);
+        localStorage.removeItem('ctn-nexus-catalog-v1');
+      }
+    }
+
     fetch('/data.json')
       .then((res) => res.json())
       .then((json) => {
@@ -45,6 +58,18 @@ export default function App() {
         setLoading(false);
       });
   }, []);
+
+  const updateData = (nextData) => {
+    setData((previousData) => {
+      const resolvedData = typeof nextData === 'function' ? nextData(previousData) : nextData;
+      try {
+        localStorage.setItem('ctn-nexus-catalog-v1', JSON.stringify(resolvedData));
+      } catch (error) {
+        console.warn('Catalog updated for this session, but browser storage is full:', error);
+      }
+      return resolvedData;
+    });
+  };
 
   const addToQuote = (product) => {
     setQuoteItems((prev) => [...prev, product]);
@@ -63,6 +88,11 @@ export default function App() {
     setInquiries((prev) => [inquiry, ...prev]);
   };
 
+  const openCategory = (categoryId) => {
+    setSelectedCategoryId(categoryId);
+    setCurrentTab('collection');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#FAF7F2] flex flex-col items-center justify-center space-y-4">
@@ -77,7 +107,7 @@ export default function App() {
     return (
       <AdminDashboard
         data={data}
-        setData={setData}
+        setData={updateData}
         setIsAdminMode={setIsAdminMode}
         inquiries={inquiries}
       />
@@ -96,6 +126,7 @@ export default function App() {
         setIsAdminMode={setIsAdminMode}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
+        companyData={data?.company}
       />
 
       {/* Main View Content */}
@@ -105,6 +136,7 @@ export default function App() {
             data={data}
             setCurrentTab={setCurrentTab}
             setSelectedProduct={setSelectedProduct}
+            openCategory={openCategory}
           />
         )}
 
@@ -115,6 +147,8 @@ export default function App() {
             addToQuote={addToQuote}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            selectedCatId={selectedCategoryId}
+            setSelectedCatId={setSelectedCategoryId}
           />
         )}
 
@@ -139,6 +173,7 @@ export default function App() {
         companyData={data?.company}
         categories={data?.categories || []}
         setCurrentTab={setCurrentTab}
+        openCategory={openCategory}
       />
 
       {/* Product Detail Popup Modal */}

@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   LayoutDashboard, 
   Package, 
   Image as ImageIcon, 
   FileText, 
   Inbox, 
-  Settings as SettingsIcon, 
   Plus, 
   Trash2, 
   Edit, 
   Save, 
   CheckCircle, 
-  ArrowLeft,
   Globe,
   Upload,
   Eye
 } from 'lucide-react';
+
+const createEmptyProduct = () => ({
+  code: 'NEW' + Math.floor(1000 + Math.random() * 9000),
+  name: '',
+  category_id: 'glazed-ceramic',
+  dimensions: '',
+  packaging: '',
+  material: 'Glazed Ceramic Stoneware',
+  firing_temp: '1100°C High Fired',
+  in_stock: true,
+  images: []
+});
 
 export default function AdminDashboard({ data, setData, setIsAdminMode, inquiries = [] }) {
   const [activeTab, setActiveTab] = useState('products'); // 'dashboard', 'products', 'media', 'pages', 'inquiries'
@@ -23,17 +33,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
   const [showAddProductModal, setShowAddProductModal] = useState(false);
   const [saveNotification, setSaveNotification] = useState(false);
 
-  // New product form state
-  const [newProd, setNewProd] = useState({
-    code: 'NGC' + Math.floor(1000 + Math.random() * 9000),
-    name: '',
-    category_id: 'glazed-ceramic',
-    dimensions: 'D50xH45 cm',
-    material: 'Glazed Ceramic Stoneware',
-    firing_temp: '1100°C High Fired',
-    in_stock: true,
-    images: ['/images/home_banner_1.jpg']
-  });
+  const [newProd, setNewProd] = useState(createEmptyProduct);
 
   // Company info form state
   const [companyForm, setCompanyForm] = useState(data?.company || {});
@@ -44,20 +44,82 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
     setTimeout(() => setSaveNotification(false), 3000);
   };
 
-  // Add Product Handler
-  const handleAddProduct = (e) => {
-    e.preventDefault();
-    const updatedCategories = data.categories.map((cat) => {
-      if (cat.id === newProd.category_id) {
-        const categoryTitle = cat.title;
-        const newProductObj = {
-          ...newProd,
-          id: 'prod-' + Date.now(),
-          category_title: categoryTitle
+  const openAddProduct = () => {
+    setEditingProduct(null);
+    setNewProd(createEmptyProduct());
+    setShowAddProductModal(true);
+  };
+
+  const openEditProduct = (categoryId, product) => {
+    setEditingProduct({ id: product.id, originalCategoryId: categoryId });
+    setNewProd({
+      ...product,
+      category_id: categoryId,
+      dimensions: product.dimensions || '',
+      packaging: product.packaging || '',
+      images: product.images || []
+    });
+    setShowAddProductModal(true);
+  };
+
+  const handleProductImageUpload = async (event) => {
+    const files = Array.from(event.target.files || []);
+    const uploadedImages = await Promise.all(files.map(file => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const image = new Image();
+        image.onload = () => {
+          const maxSide = 1400;
+          const scale = Math.min(1, maxSide / Math.max(image.width, image.height));
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.round(image.width * scale);
+          canvas.height = Math.round(image.height * scale);
+          const context = canvas.getContext('2d');
+          context.fillStyle = '#ffffff';
+          context.fillRect(0, 0, canvas.width, canvas.height);
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL('image/jpeg', 0.86));
         };
+        image.onerror = reject;
+        image.src = reader.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    })));
+    setNewProd(prev => ({ ...prev, images: [...(prev.images || []), ...uploadedImages] }));
+    event.target.value = '';
+  };
+
+  const removeProductImage = (index) => {
+    setNewProd(prev => ({
+      ...prev,
+      images: (prev.images || []).filter((_, imageIndex) => imageIndex !== index)
+    }));
+  };
+
+  // Add / update product handler
+  const handleSaveProduct = (e) => {
+    e.preventDefault();
+    const targetCategory = data.categories.find(cat => cat.id === newProd.category_id);
+    const productObject = {
+      ...newProd,
+      id: editingProduct?.id || 'prod-' + Date.now(),
+      category_title: targetCategory?.title || '',
+      images: newProd.images?.length ? newProd.images : ['/images/home_banner_1.jpg']
+    };
+
+    let updatedCategories = data.categories.map(cat => ({
+      ...cat,
+      products: editingProduct
+        ? (cat.products || []).filter(product => product.id !== editingProduct.id)
+        : (cat.products || [])
+    }));
+
+    updatedCategories = updatedCategories.map((cat) => {
+      if (cat.id === newProd.category_id) {
         return {
           ...cat,
-          products: [newProductObj, ...(cat.products || [])]
+          products: [productObject, ...(cat.products || [])]
         };
       }
       return cat;
@@ -65,6 +127,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
 
     setData({ ...data, categories: updatedCategories });
     setShowAddProductModal(false);
+    setEditingProduct(null);
     showSavedAlert();
   };
 
@@ -121,7 +184,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
 
         {saveNotification && (
           <div className="bg-[#5C6B57] text-white px-3 py-1 rounded text-xs font-semibold flex items-center gap-1.5 animate-fade-in">
-            <CheckCircle className="w-3.5 h-3.5" /> WordPress Database Saved Successfully!
+            <CheckCircle className="w-3.5 h-3.5" /> Catalog changes saved successfully!
           </div>
         )}
       </div>
@@ -207,7 +270,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                 <h3 className="font-serif font-bold text-lg text-white">Quick Actions</h3>
                 <div className="flex flex-wrap gap-3">
                   <button
-                    onClick={() => { setActiveTab('products'); setShowAddProductModal(true); }}
+                    onClick={() => { setActiveTab('products'); openAddProduct(); }}
                     className="px-4 py-2 bg-[#C85A32] hover:bg-[#A34828] text-white text-xs font-semibold rounded flex items-center gap-1.5"
                   >
                     <Plus className="w-4 h-4" /> Add New Pot Model
@@ -238,11 +301,18 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                   <p className="text-xs text-[#A89F91]">Add, edit, or delete pot models, sizes, glazes, and stock status.</p>
                 </div>
                 <button
-                  onClick={() => setShowAddProductModal(true)}
+                  onClick={openAddProduct}
                   className="px-4 py-2 bg-[#C85A32] hover:bg-[#A34828] text-white text-xs font-semibold rounded shadow flex items-center gap-1.5"
                 >
                   <Plus className="w-4 h-4" /> Add New Product
                 </button>
+              </div>
+
+              <div className="bg-[#252220] border border-[#3A3532] rounded-lg p-4 flex items-start gap-3 text-xs text-[#CFC6B8]">
+                <Upload className="w-5 h-5 text-[#C59B27] shrink-0" />
+                <p>
+                  To update the homepage featured area or Stock List, click <strong className="text-white">Edit</strong> on a product, upload or remove its photos, then set <strong className="text-white">Stock status</strong> to “In Stock”. Exact pot and packing sizes can be entered in the same form.
+                </p>
               </div>
 
               {/* Products Table */}
@@ -265,7 +335,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                         (cat.products || []).map(prod => (
                           <tr key={prod.id} className="hover:bg-[#342F2C] transition-colors">
                             <td className="p-3">
-                              <img src={prod.images?.[0]} alt="" className="w-10 h-10 object-cover rounded bg-[#1D1B1A]" />
+                              <img src={prod.images?.[0]} alt="" className="w-10 h-10 object-contain rounded bg-white" />
                             </td>
                             <td className="p-3 font-mono font-bold text-[#C59B27]">{prod.code}</td>
                             <td className="p-3 font-semibold text-white">{prod.name}</td>
@@ -279,6 +349,13 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                               )}
                             </td>
                             <td className="p-3 text-right space-x-2">
+                              <button
+                                onClick={() => openEditProduct(cat.id, prod)}
+                                className="p-1.5 text-[#C59B27] hover:bg-[#1D1B1A] rounded"
+                                title="Edit product, sizes and images"
+                              >
+                                <Edit className="w-4 h-4" />
+                              </button>
                               <button
                                 onClick={() => handleDeleteProduct(cat.id, prod.id)}
                                 className="p-1.5 text-[#C85A32] hover:bg-[#1D1B1A] rounded"
@@ -302,7 +379,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
             <div className="space-y-6 animate-fade-in">
               <div>
                 <h1 className="font-serif text-2xl font-bold text-white">Media Library & Homepage Banners</h1>
-                <p className="text-xs text-[#A89F91]">Manage background sliders and category cover photos.</p>
+                <p className="text-xs text-[#A89F91]">Manage background sliders and category cover photos. Product and stock images are managed from the Products tab.</p>
               </div>
 
               <div className="space-y-4">
@@ -371,6 +448,29 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                   />
                 </div>
 
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="font-semibold text-white">LinkedIn URL</label>
+                    <input
+                      type="url"
+                      value={companyForm.linkedin || ''}
+                      onChange={(e) => setCompanyForm({ ...companyForm, linkedin: e.target.value })}
+                      placeholder="https://www.linkedin.com/company/..."
+                      className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white focus:outline-none focus:border-[#C85A32]"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="font-semibold text-white">Instagram URL</label>
+                    <input
+                      type="url"
+                      value={companyForm.instagram || ''}
+                      onChange={(e) => setCompanyForm({ ...companyForm, instagram: e.target.value })}
+                      placeholder="https://www.instagram.com/..."
+                      className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white focus:outline-none focus:border-[#C85A32]"
+                    />
+                  </div>
+                </div>
+
                 <div className="space-y-1">
                   <label className="font-semibold text-white">Brand Story Quote (Homepage Quote Banner)</label>
                   <textarea
@@ -435,16 +535,16 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
         </main>
       </div>
 
-      {/* Add New Product Modal */}
+      {/* Add / edit product modal */}
       {showAddProductModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-          <div className="bg-[#2B2725] border border-[#3A3532] rounded-xl max-w-xl w-full p-6 space-y-4 text-xs text-[#E5DFD5]">
+          <div className="bg-[#2B2725] border border-[#3A3532] rounded-xl max-w-2xl w-full max-h-[92vh] overflow-y-auto p-6 space-y-4 text-xs text-[#E5DFD5]">
             <div className="flex items-center justify-between border-b border-[#3A3532] pb-3">
-              <h3 className="font-serif text-lg font-bold text-white">Add New Pot Product to WordPress</h3>
-              <button onClick={() => setShowAddProductModal(false)} className="text-[#A89F91] hover:text-white">✕</button>
+              <h3 className="font-serif text-lg font-bold text-white">{editingProduct ? 'Edit Pot Product' : 'Add New Pot Product'}</h3>
+              <button onClick={() => { setShowAddProductModal(false); setEditingProduct(null); }} className="text-[#A89F91] hover:text-white">✕</button>
             </div>
 
-            <form onSubmit={handleAddProduct} className="space-y-3">
+            <form onSubmit={handleSaveProduct} className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <label className="font-semibold text-white">Product Code *</label>
@@ -487,7 +587,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                   <label className="font-semibold text-white">Dimensions</label>
                   <input
                     type="text"
-                    placeholder="D60xH55 cm"
+                    placeholder="e.g. Top Ø60 × H55 cm; Bottom Ø38 cm"
                     value={newProd.dimensions}
                     onChange={(e) => setNewProd({ ...newProd, dimensions: e.target.value })}
                     className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white"
@@ -506,10 +606,68 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                 </div>
               </div>
 
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="font-semibold text-white">Material</label>
+                  <input
+                    type="text"
+                    value={newProd.material || ''}
+                    onChange={(e) => setNewProd({ ...newProd, material: e.target.value })}
+                    placeholder="e.g. Glazed Ceramic"
+                    className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="font-semibold text-white">Packaging dimensions</label>
+                  <input
+                    type="text"
+                    value={newProd.packaging || ''}
+                    onChange={(e) => setNewProd({ ...newProd, packaging: e.target.value })}
+                    placeholder="e.g. 65 × 65 × 70 cm / 2 pcs per pallet"
+                    className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white"
+                  />
+                  <p className="text-[10px] text-[#8F867C]">Enter the packed L × W × H and quantity per carton/pallet.</p>
+                </div>
+              </div>
+
+              <div className="space-y-3 border border-[#3A3532] rounded-lg p-4 bg-[#24211F]">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <label className="font-semibold text-white block">Product photos</label>
+                    <p className="text-[10px] text-[#8F867C]">Upload multiple photos. The first photo is used on collection, featured and stock cards.</p>
+                  </div>
+                  <label className="px-3 py-2 bg-[#5C6B57] hover:bg-[#495545] text-white rounded flex items-center gap-1.5 cursor-pointer shrink-0">
+                    <Upload className="w-4 h-4" /> Upload photos
+                    <input type="file" accept="image/*" multiple onChange={handleProductImageUpload} className="hidden" />
+                  </label>
+                </div>
+
+                {newProd.images?.length ? (
+                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
+                    {newProd.images.map((image, index) => (
+                      <div key={`${image.slice(0, 40)}-${index}`} className="relative aspect-square bg-white rounded overflow-hidden group">
+                        <img src={image} alt={`Product ${index + 1}`} className="w-full h-full object-contain p-1" />
+                        <button
+                          type="button"
+                          onClick={() => removeProductImage(index)}
+                          className="absolute top-1 right-1 p-1 bg-black/70 hover:bg-[#A34828] text-white rounded"
+                          title="Remove photo"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                        {index === 0 && <span className="absolute bottom-1 left-1 bg-black/70 text-white text-[9px] px-1.5 py-0.5 rounded">Cover</span>}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-[#8F867C] text-center py-3">No product photos yet.</p>
+                )}
+              </div>
+
               <div className="pt-2 flex justify-end gap-2">
                 <button
                   type="button"
-                  onClick={() => setShowAddProductModal(false)}
+                  onClick={() => { setShowAddProductModal(false); setEditingProduct(null); }}
                   className="px-4 py-2 bg-[#3A3532] text-white rounded"
                 >
                   Cancel
@@ -518,7 +676,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                   type="submit"
                   className="px-5 py-2 bg-[#C85A32] hover:bg-[#A34828] text-white font-semibold rounded"
                 >
-                  Add To Catalog
+                  <Save className="w-4 h-4 inline mr-1" /> {editingProduct ? 'Save Product Changes' : 'Add To Catalog'}
                 </button>
               </div>
             </form>

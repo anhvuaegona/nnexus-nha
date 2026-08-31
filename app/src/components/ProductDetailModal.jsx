@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { X, Check, Flame, Shield, Truck, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { X, Flame, Shield, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function ProductDetailModal({ product, onClose, addToQuote }) {
+  const [activeImgIdx, setActiveImgIdx] = useState(0);
   if (!product) return null;
 
-  const [activeImgIdx, setActiveImgIdx] = useState(0);
-  const images = product.images || ['/images/home_banner_1.jpg'];
+  const images = product.images?.length ? product.images : ['/images/home_banner_1.jpg'];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in overflow-y-auto">
@@ -24,13 +24,8 @@ export default function ProductDetailModal({ product, onClose, addToQuote }) {
             <img
               src={images[activeImgIdx]}
               alt={product.name}
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-contain object-center p-3"
             />
-            {product.in_stock && (
-              <span className="absolute top-3 left-3 bg-[#5C6B57] text-white text-[11px] font-bold px-2.5 py-1 rounded shadow">
-                IN STOCK
-              </span>
-            )}
 
             {images.length > 1 && (
               <>
@@ -61,7 +56,7 @@ export default function ProductDetailModal({ product, onClose, addToQuote }) {
                     idx === activeImgIdx ? 'border-[#A34828] scale-105' : 'border-transparent opacity-70 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+                  <img src={img} alt="" className="w-full h-full object-contain bg-white" />
                 </button>
               ))}
             </div>
@@ -98,11 +93,8 @@ export default function ProductDetailModal({ product, onClose, addToQuote }) {
                 <span className="text-[#8C827A]">Firing Temperature:</span>
                 <span className="font-semibold text-[#A34828]">{product.firing_temp || '1100°C High Fired'}</span>
 
-                <span className="text-[#8C827A]">Artisanal Finish:</span>
-                <span className="font-semibold">{product.finish || 'Hand-Glazed'}</span>
-
                 <span className="text-[#8C827A]">Packaging:</span>
-                <span className="font-semibold">Export Standard Pallet</span>
+                <span className="font-semibold">{product.packaging || 'Contact us for packing dimensions'}</span>
               </div>
             </div>
 

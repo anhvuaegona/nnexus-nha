@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle2, Award, Truck, Flame } from 'lucide-react';
+import logoUrl from '../../docs/images/logo.jpeg';
 
-export default function Footer({ companyData, categories, setCurrentTab }) {
+export default function Footer({ companyData, categories, setCurrentTab, openCategory }) {
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState('');
 
@@ -50,12 +51,15 @@ export default function Footer({ companyData, categories, setCurrentTab }) {
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Column 1: Company Profile */}
         <div className="space-y-4">
-          <div className="space-y-1">
-            <h3 className="font-serif text-2xl font-bold text-white tracking-tight">CTN NEXUS</h3>
-            <p className="text-xs text-[#C85A32] tracking-widest font-semibold uppercase">Company Limited</p>
+          <div className="flex items-center gap-3">
+            <img src={logoUrl} alt="CTN Nexus logo" className="h-16 w-auto object-contain rounded-sm" />
+            <div className="space-y-1">
+              <h3 className="font-serif text-xl font-bold text-white tracking-tight">CTN NEXUS</h3>
+              <p className="text-[10px] text-[#C85A32] tracking-widest font-semibold uppercase">Company Limited</p>
+            </div>
           </div>
           <p className="text-xs text-[#A89F91] leading-relaxed">
-            Leading Vietnamese artisan planter manufacturer delivering premium glazed stoneware, terracotta, giant amphorae, and composite outdoor pottery to global garden centres and landscape architects.
+            As a reliable Vietnamese pottery source, we take pride in delivering premium glazed stoneware, terracotta, giant amphorae, and composite outdoor pottery to global garden centres and landscape architects.
           </p>
           <div className="pt-2 text-xs text-[#C59B27] font-medium">
             © {new Date().getFullYear()} CTN NEXUS CO., LTD. All rights reserved.
@@ -69,7 +73,7 @@ export default function Footer({ companyData, categories, setCurrentTab }) {
             {categories.map((cat) => (
               <li key={cat.id}>
                 <button
-                  onClick={() => setCurrentTab('collection')}
+                  onClick={() => openCategory(cat.id)}
                   className="hover:text-[#C85A32] transition-colors text-left"
                 >
                   {cat.title}

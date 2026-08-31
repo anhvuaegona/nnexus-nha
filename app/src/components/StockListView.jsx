@@ -1,5 +1,4 @@
-import React from 'react';
-import { Box, CheckCircle, Truck, Eye, Plus, ArrowRight } from 'lucide-react';
+import { CheckCircle, Truck, Eye, Plus, ArrowRight } from 'lucide-react';
 
 export default function StockListView({ categories, setSelectedProduct, addToQuote, setCurrentTab }) {
   // Collect all in-stock products
@@ -48,11 +47,8 @@ export default function StockListView({ categories, setSelectedProduct, addToQuo
                 <img
                   src={prod.images?.[0] || '/images/home_banner_1.jpg'}
                   alt={prod.name}
-                  className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700"
+                  className="w-full h-full object-contain object-center p-3 group-hover:scale-[1.03] transition-transform duration-700"
                 />
-                <span className="absolute top-2 left-2 bg-[#5C6B57] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">
-                  IN STOCK
-                </span>
                 <span className="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded backdrop-blur-sm">
                   {prod.code}
                 </span>

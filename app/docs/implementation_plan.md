@@ -1,6 +1,6 @@
 # Implementation Plan: Website Tham Khảo & Bán Chậu Cây / Vật Dụng Sân Vườn cho CTN NEXUS
 
-Website được xây dựng trên nền tảng **WordPress** dành cho **CTN NEXUS COMPANY LIMITED**, lấy cảm hứng thiết kế & cấu trúc từ website tham khảo [potsandpithoi.com/pages/the-pots](https://potsandpithoi.com/pages/the-pots) và dựa trên toàn bộ dữ liệu nội dung, hình ảnh trong thư mục [NHA](file:///home/atat/Desktop/DOCS/NHA).
+Website được xây dựng trên nền tảng **WordPress** dành cho **CTN NEXUS COMPANY LIMITED**, lấy cảm hứng thiết kế & cấu trúc từ website tham khảo [potsandpithoi.com/pages/the-pots](https://potsandpithoi.com/pages/the-pots) và dựa trên toàn bộ dữ liệu nội dung, hình ảnh trong thư mục [NHA](file:///home/atat/Desktop/DOCS/app/docs).
 
 ---
 
@@ -13,14 +13,14 @@ Website được xây dựng trên nền tảng **WordPress** dành cho **CTN NE
 
 ### 1.2 Phân Tích Dữ Liệu Trong Thư Mục `DOCS/NHA`
 Sau khi kiểm tra chi tiết cấu trúc thư mục [DOCS/NHA](file:///home/atat/Desktop/DOCS/NHA):
-1. **[Website.xlsx](file:///home/atat/Desktop/DOCS/NHA/Website.xlsx)**: Chứa cấu trúc chi tiết 6 trang chính:
+1. **[Website.xlsx](file:///home/atat/Desktop/DOCS/app/docs/images/Website.xlsx)**: Chứa cấu trúc chi tiết 6 trang chính:
    - **`home`**: Banner slider, bài viết thương hiệu, 6 danh mục chính, header & footer.
    - **`collection`**: Trang tổng quan 6 danh mục chậu (tương tự trang `the-pots` / `for-the-garden` của Pots & Pithoi).
    - **`chi tiết mỗi mục cua collection`**: Danh sách sản phẩm của từng mục (ít nhất 10+ mẫu chậu/mục).
    - **`trang chi tiet cua 6 muc`**: Layout chi tiết cho từng loại sản phẩm (Hình ảnh, kích thước, màu sắc, mã chậu).
    - **`stock list`**: Danh mục các chậu có sẵn trong kho (10-12 ô hình ảnh phục vụ giao nhanh).
    - **`visit`**: Trang giới thiệu showroom/xưởng, thông tin liên hệ B2B, bản đồ.
-2. **Thư mục [home page](file:///home/atat/Desktop/DOCS/NHA/home%20page)**: Chứa 5 hình ảnh banner slider chuẩn cho trang chủ (`home page (1).jpg` đến `home page (5).jpg`).
+2. **Thư mục [home page](file:///home/atat/Desktop/DOCS/app/docs/images/home%20page)**: Chứa 5 hình ảnh banner slider chuẩn cho trang chủ (`home page (1).jpg` đến `home page (5).jpg`).
 3. **6 Thư mục danh mục sản phẩm**:
    - `1. GLALZED CERAMIC PLANTER` (Chậu gốm tráng men)
    - `2. GIANT PLANTER` (Chậu kích thước lớn/khổng lồ)
@@ -89,7 +89,7 @@ graph TD
 
 ### 4.2 Trang Chủ (`HOME`)
 1. **Hero Slider Section**:
-   - Slider tự động chuyển 4-5 hình ảnh chất lượng từ thư mục `DOCS/NHA/home page`.
+   - Slider tự động chuyển 4-5 hình ảnh chất lượng từ thư mục `app/docs/images/home page`.
    - Nội dung đè (Overlay): Tiêu đề thương hiệu + Nút kêu gọi hành động "Explore Collection".
 2. **Craftsmanship Story (Giới thiệu thủ công)**:
    - Đoạn văn mẫu từ Excel:
@@ -165,7 +165,7 @@ Dự án được cấu hình sẵn hệ thống quản trị trực quan:
 1. **Khởi tạo môi trường WordPress**: Cài đặt WordPress, thiết lập HTTPS, Theme & Plugins cốt lõi.
 2. **Xây dựng Design System**: Cấu hình bảng màu (Terracotta brown, Warm clay, Charcoal, Emerald green) & Font chữ sang trọng (Playfair Display / Serif + Inter / Sans-serif).
 3. **Dựng khung giao diện (Layout)**: Tạo 6 trang chính theo chuẩn `Website.xlsx`.
-4. **Import Dữ liệu & Media**: Upload toàn bộ hình ảnh chậu từ 6 thư mục sản phẩm và 5 ảnh trang chủ trong thư mục [NHA](file:///home/atat/Desktop/DOCS/NHA).
+4. **Import Dữ liệu & Media**: Upload toàn bộ hình ảnh chậu từ 6 thư mục sản phẩm và 5 ảnh trang chủ trong thư mục [NHA](file:///home/atat/Desktop/app/docs).
 5. **Cấu hình Form & Chức năng B2B Quote**: Kiểm tra gửi mail & lưu thông tin báo giá.
 
 ### 6.2 Kiểm Thử (Verification)

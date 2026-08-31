@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Search, ShoppingBag, Settings, Menu, X, Globe, ShieldCheck } from 'lucide-react';
+import { useState } from 'react';
+import { Phone, Mail, MapPin, Search, ShoppingBag, Settings, Menu, X, ShieldCheck } from 'lucide-react';
+import logoUrl from '../../docs/images/logo.jpeg';
 
 export default function Header({ 
   currentTab, 
@@ -9,7 +10,8 @@ export default function Header({
   isAdminMode, 
   setIsAdminMode,
   searchQuery,
-  setSearchQuery
+  setSearchQuery,
+  companyData
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSearchInput, setShowSearchInput] = useState(false);
@@ -29,20 +31,42 @@ export default function Header({
           <div className="flex items-center gap-4 text-[11px] sm:text-xs">
             <span className="flex items-center gap-1">
               <Phone className="w-3.5 h-3.5 text-[#C85A32]" />
-              <a href="tel:+84976856365" className="hover:underline">+84(0)976856365</a>
+              <a href={`tel:${companyData?.tel || '+84976856365'}`} className="hover:underline">{companyData?.tel || '+84(0)976856365'}</a>
             </span>
             <span className="hidden md:flex items-center gap-1">
               <Mail className="w-3.5 h-3.5 text-[#C85A32]" />
-              <a href="mailto:Anny.ctnnexus@gmail.com" className="hover:underline">Anny.ctnnexus@gmail.com</a>
+              <a href={`mailto:${companyData?.email || 'annychau@ctnnexus.com'}`} className="hover:underline">{companyData?.email || 'annychau@ctnnexus.com'}</a>
             </span>
             <span className="hidden lg:flex items-center gap-1 text-[#B8AF9F]">
               <MapPin className="w-3.5 h-3.5 text-[#C85A32]" />
-              No. 17, 192 Pham Duc Son, Ward 16, Dist 8, HCMC
+              {companyData?.address || 'No. 17, 192 Pham Duc Son, Phu Dinh Ward, HCMC'}
             </span>
           </div>
 
           <div className="flex items-center gap-3 ml-auto">
-            <span className="flex items-center gap-1 text-[11px] bg-[#322E2B] px-2 py-0.5 rounded text-[#D6CEC0]">
+            <div className="flex items-center gap-1 border-r border-[#4A4542] pr-2">
+              <a
+                href={companyData?.linkedin || 'https://www.linkedin.com/'}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="CTN Nexus on LinkedIn"
+                title="LinkedIn"
+                className="p-1 text-[#D6CEC0] hover:text-white transition-colors"
+              >
+                <span className="block w-3.5 h-3.5 text-[11px] leading-[14px] font-bold">in</span>
+              </a>
+              <a
+                href={companyData?.instagram || 'https://www.instagram.com/'}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="CTN Nexus on Instagram"
+                title="Instagram"
+                className="p-1 text-[#D6CEC0] hover:text-white transition-colors"
+              >
+                <span className="block w-3.5 h-3.5 text-sm leading-[13px] font-bold">◎</span>
+              </a>
+            </div>
+            <span className="hidden sm:flex items-center gap-1 text-[11px] bg-[#322E2B] px-2 py-0.5 rounded text-[#D6CEC0]">
               <ShieldCheck className="w-3 h-3 text-[#5C6B57]" /> B2B Global Supplier
             </span>
             
@@ -56,7 +80,7 @@ export default function Header({
               }`}
             >
               <Settings className="w-3.5 h-3.5" />
-              {isAdminMode ? 'Exit WP Admin Mode' : 'WP Admin CMS Panel'}
+              <span className="hidden sm:inline">{isAdminMode ? 'Exit WP Admin Mode' : 'WP Admin CMS Panel'}</span>
             </button>
           </div>
         </div>
@@ -66,14 +90,13 @@ export default function Header({
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
         {/* Brand Logo */}
         <div 
-          className="cursor-pointer flex flex-col group"
+          className="cursor-pointer flex items-center gap-3 group min-w-0"
           onClick={() => { setCurrentTab('home'); setIsAdminMode(false); }}
         >
-          <span className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[#2A2624] group-hover:text-[#A34828] transition-colors">
-            CTN NEXUS
-          </span>
-          <span className="text-[10px] tracking-[0.25em] text-[#8C827A] uppercase font-semibold">
-            Artisanal Pots & Planters
+          <img src={logoUrl} alt="CTN Nexus logo" className="h-14 sm:h-16 w-auto object-contain" />
+          <span className="hidden sm:flex flex-col">
+            <span className="font-serif text-xl lg:text-2xl font-bold tracking-tight text-[#2A2624] group-hover:text-[#A34828] transition-colors">CTN NEXUS</span>
+            <span className="text-[9px] tracking-[0.2em] text-[#8C827A] uppercase font-semibold">Artisanal Pots & Planters</span>
           </span>
         </div>
 
@@ -182,8 +205,8 @@ export default function Header({
             </button>
           ))}
           <div className="pt-2 text-xs text-[#8C827A] space-y-1">
-            <p>Hotline: +84(0)976856365</p>
-            <p>Email: Anny.ctnnexus@gmail.com</p>
+            <p>Hotline: {companyData?.tel || '+84(0)976856365'}</p>
+            <p>Email: {companyData?.email || 'annychau@ctnnexus.com'}</p>
           </div>
         </div>
       )}

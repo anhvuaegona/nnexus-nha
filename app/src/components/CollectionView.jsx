@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { Filter, Search, Plus, Check, Eye, Box, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { Search, Plus, Eye, Box, ArrowRight } from 'lucide-react';
 
 export default function CollectionView({ 
   categories, 
   setSelectedProduct, 
   addToQuote, 
   searchQuery, 
-  setSearchQuery 
+  setSearchQuery,
+  selectedCatId,
+  setSelectedCatId
 }) {
-  const [selectedCatId, setSelectedCatId] = useState('all');
   const [stockOnly, setStockOnly] = useState(false);
 
   // Flatten all products or filter by category
@@ -186,13 +187,8 @@ export default function CollectionView({
                   <img
                     src={prod.images?.[0] || '/images/home_banner_1.jpg'}
                     alt={prod.name}
-                    className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700"
+                    className="w-full h-full object-contain object-center p-3 group-hover:scale-[1.03] transition-transform duration-700"
                   />
-                  {prod.in_stock && (
-                    <span className="absolute top-2 left-2 bg-[#5C6B57] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">
-                      IN STOCK
-                    </span>
-                  )}
                   <span className="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded backdrop-blur-sm">
                     {prod.code}
                   </span>

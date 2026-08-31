@@ -3,8 +3,10 @@
     "name": "CTN NEXUS COMPANY LIMITED",
     "address": "NO. 17, 192 PHAM DUC SON, PHU DINH WARD, HOCHIMINH CITY, VIETNAM",
     "tel": "+84(0)976856365",
-    "email": "Anny.ctnnexus@gmail.com",
-    "brand_quote": "Our pots are meticulously handcrafted by skilled artisans in Vietnam, employing traditional techniques passed down through generations. Fired at high temperatures exceeding 1100°C, subtle variations in colour, texture, and detail naturally emerge, ensuring that no two pieces are exactly alike. Each vessel is not merely a garden element, but a unique work of art that celebrates the timeless beauty of hand-wrought pottery."
+    "email": "annychau@ctnnexus.com",
+    "linkedin": "https://www.linkedin.com/",
+    "instagram": "https://www.instagram.com/",
+    "brand_quote": "Our pots are meticulously handcrafted by skilled artisans in Vietnam, employing traditional techniques passed down through generations. Fired at high temperatures exceeding 1100°C, subtle variations in colour, texture, and detail naturally emerge, ensuring that no two pieces are exactly alike. Each pot is not merely a garden element, but a unique work of art that celebrates the timeless beauty of hand-wrought pottery."
   },
   "home_sliders": [
     "/images/home_banner_1.jpg",
@@ -553,7 +555,7 @@
     {
       "id": "terracotta-planters",
       "title": "Terracotta Planters",
-      "subtitle": "Classic Italian & Vietnamese earthenware in warm natural clays",
+      "subtitle": "Classic Vietnamese earthenware in warm natural clays",
       "description": "Traditional porous clay planters offering natural breathability for roots, developing a beautiful aged patina over seasons of outdoor living.",
       "cover_image": "/images/cat_cover_terracotta-planters.jpg",
       "products": [

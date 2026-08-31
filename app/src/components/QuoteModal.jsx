@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, Trash2, Send, CheckCircle2, ShoppingBag, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { X, Trash2, Send, CheckCircle2, ShoppingBag } from 'lucide-react';
 
 export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, onClose, onAddInquiry }) {
   const [submitted, setSubmitted] = useState(false);
@@ -49,7 +49,7 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
             <CheckCircle2 className="w-16 h-16 text-[#5C6B57] mx-auto animate-bounce" />
             <h3 className="font-serif text-2xl font-bold text-[#2A2624]">Quote Request Submitted!</h3>
             <p className="text-xs text-[#6B6460] max-w-md mx-auto leading-relaxed">
-              Your inquiry has been successfully sent to CTN Nexus Export Sales (Anny.ctnnexus@gmail.com). We will prepare formal trade pricing and container loading estimates for your review.
+              Your inquiry has been successfully sent to CTN Nexus Export Sales (annychau@ctnnexus.com). We will prepare formal trade pricing and container loading estimates for your review.
             </p>
             <button
               onClick={onClose}
@@ -62,7 +62,7 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
           <div className="py-12 text-center space-y-3">
             <ShoppingBag className="w-12 h-12 text-[#D8D0C5] mx-auto" />
             <h3 className="font-serif text-lg font-bold text-[#2A2624]">Your Quote Basket Is Empty</h3>
-            <p className="text-xs text-[#8C827A]">Browse our collections and click "Add To Quote" on desired pot models.</p>
+            <p className="text-xs text-[#8C827A]">Browse our collections and click “Add To Quote” on desired pot models.</p>
             <button
               onClick={onClose}
               className="px-5 py-2 bg-[#A34828] text-white text-xs font-semibold rounded"
@@ -77,7 +77,7 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
               {quoteItems.map((item, idx) => (
                 <div key={idx} className="flex items-center justify-between bg-white p-3 rounded border border-[#EBE5DB] text-xs">
                   <div className="flex items-center gap-3">
-                    <img src={item.images?.[0]} alt="" className="w-12 h-12 object-cover rounded bg-[#F3EFE6]" />
+                    <img src={item.images?.[0]} alt="" className="w-12 h-12 object-contain rounded bg-[#F3EFE6]" />
                     <div>
                       <h4 className="font-serif font-bold text-[#2A2624]">{item.name}</h4>
                       <p className="text-[11px] text-[#8C827A]">Code: {item.code} | {item.dimensions}</p>

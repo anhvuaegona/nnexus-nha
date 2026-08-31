@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, ArrowRight, Quote, ShieldCheck, Sparkles, Box, CheckCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, ArrowRight, Quote, Box } from 'lucide-react';
 
-export default function HomeView({ data, setCurrentTab, setSelectedProduct }) {
+export default function HomeView({ data, setCurrentTab, setSelectedProduct, openCategory }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliders = data?.home_sliders || [];
   const categories = data?.categories || [];
@@ -16,7 +16,10 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct }) {
   }, [sliders.length]);
 
   // Collect some sample featured products across categories
-  const featuredProducts = categories.flatMap(c => c.products || []).slice(0, 8);
+  const featuredProducts = categories
+    .flatMap(c => c.products || [])
+    .filter(product => product.in_stock)
+    .slice(0, 8);
 
   return (
     <div className="space-y-16 pb-16">
@@ -38,14 +41,8 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct }) {
             />
             {/* Banner Caption Content */}
             <div className="absolute inset-0 z-20 max-w-7xl mx-auto px-6 flex flex-col justify-center text-white space-y-4">
-              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] font-semibold text-[#C59B27] bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full w-max">
-                <Sparkles className="w-3.5 h-3.5" /> Handcrafted In Vietnam
-              </span>
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-2xl leading-tight">
-                Timeless Pots & Architectural Vessels
-              </h1>
-              <p className="text-sm sm:text-base text-[#E5DFD5] max-w-xl font-light leading-relaxed">
-                Fired at over 1100°C for exceptional strength, rich glaze textures, and enduring beauty for global landscapes.
+              <p className="text-base sm:text-xl text-[#F3EEE7] max-w-2xl font-light leading-relaxed drop-shadow-lg">
+                Rooted in years of ceramic expertise, dedicated to delivering quality and value to customers worldwide
               </p>
               <div className="pt-4 flex flex-wrap items-center gap-4">
                 <button
@@ -98,13 +95,8 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct }) {
         <div className="bg-[#FAF7F2] border border-[#EBE5DB] rounded-2xl p-8 sm:p-12 relative shadow-sm">
           <Quote className="w-12 h-12 text-[#C85A32]/20 mx-auto mb-4" />
           <p className="font-serif text-lg sm:text-xl md:text-2xl text-[#2A2624] italic leading-relaxed max-w-4xl mx-auto">
-            "{data?.company?.brand_quote}"
+            “{data?.company?.brand_quote}”
           </p>
-          <div className="mt-6 flex items-center justify-center gap-2 text-xs uppercase tracking-widest text-[#8C827A] font-semibold">
-            <span className="w-8 h-px bg-[#C85A32]" />
-            <span>CTN NEXUS ARTISANAL GUARANTEE</span>
-            <span className="w-8 h-px bg-[#C85A32]" />
-          </div>
         </div>
       </section>
 
@@ -119,10 +111,10 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct }) {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {categories.map((cat, idx) => (
+          {categories.map((cat) => (
             <div
               key={cat.id}
-              onClick={() => setCurrentTab('collection')}
+              onClick={() => openCategory(cat.id)}
               className="group cursor-pointer bg-white rounded-xl overflow-hidden border border-[#EBE5DB] shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
             >
               <div className="relative h-64 sm:h-72 overflow-hidden bg-[#F3EFE6]">
@@ -139,12 +131,8 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct }) {
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider text-[#A34828]">
-                  0{idx + 1}
-                </div>
-
                 <div className="absolute bottom-4 left-4 right-4 text-white space-y-1">
-                  <h3 className="font-serif text-xl font-bold group-hover:text-[#F3D7C6] transition-colors">
+                  <h3 className="font-serif text-xl font-bold text-white group-hover:text-[#F3D7C6] transition-colors">
                     {cat.title}
                   </h3>
                   <p className="text-xs text-[#E5DFD5] line-clamp-2 font-light">
@@ -191,13 +179,8 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct }) {
                   <img
                     src={prod.images?.[0] || '/images/home_banner_1.jpg'}
                     alt={prod.name}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain object-center p-2 group-hover:scale-[1.03] transition-transform duration-500"
                   />
-                  {prod.in_stock && (
-                    <span className="absolute top-2 left-2 bg-[#5C6B57] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">
-                      IN STOCK
-                    </span>
-                  )}
                   <span className="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded backdrop-blur-sm">
                     {prod.code}
                   </span>
@@ -223,21 +206,13 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct }) {
       <section className="max-w-7xl mx-auto px-4">
         <div className="bg-[#1F1C1B] rounded-2xl text-white p-8 sm:p-12 lg:p-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="space-y-6">
-            <span className="text-xs uppercase tracking-[0.25em] font-semibold text-[#C59B27]">B2B Partner Welcome</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold leading-tight">
-              Visit CTN Nexus Showroom & Artisan Kilns
+            <span className="text-xs uppercase tracking-[0.25em] font-semibold text-[#C59B27]">About Us</span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold leading-tight text-white">
+              About CTN Nexus
             </h2>
             <p className="text-sm text-[#D6CEC0] leading-relaxed">
-              A visit to CTN Nexus is well worth the journey, offering an inspiring space to explore our extensive collection of handcrafted ceramic pots. Take your time browsing our diverse designs tailored for global partners.
+              {"At CTN NEXUS, we’ve spent years getting our hands dirty in the world of ceramics. We truly care about crafting pieces that bring real value and warmth to your spaces. More than just standard designs, we love rolling up our sleeves to bring your creative ideas to life—customizing unique shapes, sizes, and colors just as you expect. We aren't just making pots; we're crafting what you envision."}
             </p>
-            <div className="space-y-2 text-xs text-[#A89F91]">
-              <p className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-[#C85A32]" /> Direct factory wholesale pricing & custom mold capabilities
-              </p>
-              <p className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-[#C85A32]" /> Dedicated export specialists for hassle-free shipping
-              </p>
-            </div>
             <button
               onClick={() => setCurrentTab('visit')}
               className="px-6 py-3 bg-[#C85A32] hover:bg-[#A34828] text-white text-sm font-semibold rounded shadow transition-all flex items-center gap-2"
@@ -248,16 +223,10 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct }) {
 
           <div className="rounded-xl overflow-hidden border border-[#3A3532] shadow-2xl h-72 sm:h-96 relative">
             <img
-              src={sliders[2] || sliders[0]}
-              alt="CTN Nexus Pottery Workmanship"
+              src="/images/home_about_factory.png"
+              alt="CTN Nexus pottery workshop"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
-              <div className="text-xs text-[#E5DFD5]">
-                <p className="font-bold text-white text-sm">NO. 17, 192 PHAM DUC SON</p>
-                <p>Phu Dinh Ward, Hochiminh City, Vietnam</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>

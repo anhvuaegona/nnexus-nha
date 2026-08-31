@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Calendar, CheckCircle2, Send, Building2 } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, Phone, Mail, Clock, CheckCircle2, Send, Building2 } from 'lucide-react';
 
 export default function VisitView({ companyData }) {
   const [submitted, setSubmitted] = useState(false);
