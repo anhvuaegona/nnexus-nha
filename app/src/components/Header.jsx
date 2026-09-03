@@ -44,16 +44,18 @@ export default function Header({
           </div>
 
           <div className="flex items-center gap-3 ml-auto">
-            <div className="flex items-center gap-1 border-r border-[#4A4542] pr-2">
+            <div className="flex items-center gap-1.5 border-r border-[#4A4542] pr-3">
               <a
                 href={companyData?.linkedin || 'https://www.linkedin.com/'}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="CTN Nexus on LinkedIn"
                 title="LinkedIn"
-                className="p-1 text-[#D6CEC0] hover:text-white transition-colors"
+                className="p-1.5 text-[#D6CEC0] hover:text-white transition-colors"
               >
-                <span className="block w-3.5 h-3.5 text-[11px] leading-[14px] font-bold">in</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5 fill-current">
+                  <path d="M5.3 3.8A2.3 2.3 0 1 1 5.3 8.4 2.3 2.3 0 0 1 5.3 3.8ZM3.3 9.8h4v10.9h-4V9.8Zm6.5 0h3.8v1.5h.1c.5-1 1.8-2 3.8-2 4.1 0 4.8 2.7 4.8 6.2v5.2h-4v-4.6c0-1.1 0-3.2-2-3.2s-2.3 1.5-2.3 3.1v4.7h-4.1V9.8Z" />
+                </svg>
               </a>
               <a
                 href={companyData?.instagram || 'https://www.instagram.com/'}
@@ -61,9 +63,11 @@ export default function Header({
                 rel="noreferrer"
                 aria-label="CTN Nexus on Instagram"
                 title="Instagram"
-                className="p-1 text-[#D6CEC0] hover:text-white transition-colors"
+                className="p-1.5 text-[#D6CEC0] hover:text-white transition-colors"
               >
-                <span className="block w-3.5 h-3.5 text-sm leading-[13px] font-bold">◎</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5 fill-current">
+                  <path d="M7.3 2h9.4A5.3 5.3 0 0 1 22 7.3v9.4a5.3 5.3 0 0 1-5.3 5.3H7.3A5.3 5.3 0 0 1 2 16.7V7.3A5.3 5.3 0 0 1 7.3 2Zm0 2A3.3 3.3 0 0 0 4 7.3v9.4A3.3 3.3 0 0 0 7.3 20h9.4a3.3 3.3 0 0 0 3.3-3.3V7.3A3.3 3.3 0 0 0 16.7 4H7.3Zm9.9 1.5a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
+                </svg>
               </a>
             </div>
             <span className="hidden sm:flex items-center gap-1 text-[11px] bg-[#322E2B] px-2 py-0.5 rounded text-[#D6CEC0]">

@@ -1,11 +1,6 @@
 import { CheckCircle, Truck, Eye, Plus, ArrowRight } from 'lucide-react';
 
-export default function StockListView({ categories, setSelectedProduct, addToQuote, setCurrentTab }) {
-  // Collect all in-stock products
-  const stockProducts = categories
-    .flatMap(c => c.products || [])
-    .filter(p => p.in_stock);
-
+export default function StockListView({ stockProducts, setSelectedProduct, addToQuote, setCurrentTab }) {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 space-y-10 animate-fade-in">
       {/* Header Banner */}
@@ -14,7 +9,7 @@ export default function StockListView({ categories, setSelectedProduct, addToQuo
           <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.25em] text-[#C59B27] bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
             <Truck className="w-3.5 h-3.5 text-[#5C6B57]" /> Ready For Dispatch
           </span>
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight">
+          <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
             In-Stock Wholesale Catalog
           </h1>
           <p className="text-sm sm:text-base text-[#D6CEC0] leading-relaxed">
@@ -42,7 +37,7 @@ export default function StockListView({ categories, setSelectedProduct, addToQuo
             >
               <div 
                 onClick={() => setSelectedProduct(prod)}
-                className="relative aspect-square bg-[#F3EFE6] overflow-hidden cursor-pointer"
+                className="relative aspect-square bg-white overflow-hidden cursor-pointer"
               >
                 <img
                   src={prod.images?.[0] || '/images/home_banner_1.jpg'}

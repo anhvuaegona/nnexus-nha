@@ -15,11 +15,8 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
     return () => clearInterval(timer);
   }, [sliders.length]);
 
-  // Collect some sample featured products across categories
-  const featuredProducts = categories
-    .flatMap(c => c.products || [])
-    .filter(product => product.in_stock)
-    .slice(0, 8);
+  const stockProducts = data?.stock_list || [];
+  const featuredProducts = stockProducts.slice(0, 8);
 
   return (
     <div className="space-y-16 pb-16">
@@ -117,12 +114,12 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
               onClick={() => openCategory(cat.id)}
               className="group cursor-pointer bg-white rounded-xl overflow-hidden border border-[#EBE5DB] shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
             >
-              <div className="relative h-64 sm:h-72 overflow-hidden bg-[#F3EFE6]">
+              <div className="relative h-64 sm:h-72 overflow-hidden bg-white">
                 {cat.cover_image ? (
                   <img
                     src={cat.cover_image}
                     alt={cat.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700"
+                    className="w-full h-full object-contain object-center group-hover:scale-[1.02] transition-transform duration-700"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-[#8C827A]">
@@ -153,7 +150,7 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
       </section>
 
       {/* 4. Featured Stock Showcase */}
-      <section className="bg-[#FAF7F2] border-y border-[#EBE5DB] py-16">
+      <section className="bg-[#F1ECE4] border-y border-[#E2D9CD] py-16">
         <div className="max-w-7xl mx-auto px-4 space-y-10">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
             <div>
@@ -164,7 +161,7 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
               onClick={() => setCurrentTab('stock-list')}
               className="text-xs font-bold text-[#A34828] hover:underline flex items-center gap-1"
             >
-              See All Stock Items ({categories.flatMap(c => c.products || []).filter(p => p.in_stock).length}) <ArrowRight className="w-3.5 h-3.5" />
+              See All Stock Items ({stockProducts.length}) <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
@@ -175,7 +172,7 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
                 onClick={() => setSelectedProduct(prod)}
                 className="group cursor-pointer bg-white rounded-lg overflow-hidden border border-[#EBE5DB] hover:border-[#C85A32] shadow-sm hover:shadow-md transition-all p-3 space-y-3"
               >
-                <div className="relative aspect-square rounded bg-[#F3EFE6] overflow-hidden">
+                <div className="relative aspect-square rounded bg-white overflow-hidden">
                   <img
                     src={prod.images?.[0] || '/images/home_banner_1.jpg'}
                     alt={prod.name}

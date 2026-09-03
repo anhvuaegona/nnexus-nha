@@ -19,8 +19,8 @@ export default function ProductDetailModal({ product, onClose, addToQuote }) {
         </button>
 
         {/* Left Gallery Section */}
-        <div className="w-full md:w-1/2 p-6 bg-[#FAF7F2] flex flex-col justify-between space-y-4">
-          <div className="relative aspect-square rounded-xl overflow-hidden bg-white border border-[#EBE5DB] shadow-inner">
+        <div className="w-full md:w-1/2 p-6 bg-white flex flex-col justify-between space-y-4">
+          <div className="relative aspect-square rounded-xl overflow-hidden bg-white border border-[#EEEEEE]">
             <img
               src={images[activeImgIdx]}
               alt={product.name}
@@ -90,8 +90,12 @@ export default function ProductDetailModal({ product, onClose, addToQuote }) {
                 <span className="text-[#8C827A]">Material:</span>
                 <span className="font-semibold">{product.material || 'Stoneware Clay'}</span>
 
-                <span className="text-[#8C827A]">Firing Temperature:</span>
-                <span className="font-semibold text-[#A34828]">{product.firing_temp || '1100°C High Fired'}</span>
+                {product.firing_temp && (
+                  <>
+                    <span className="text-[#8C827A]">Firing Temperature:</span>
+                    <span className="font-semibold text-[#A34828]">{product.firing_temp}</span>
+                  </>
+                )}
 
                 <span className="text-[#8C827A]">Packaging:</span>
                 <span className="font-semibold">{product.packaging || 'Contact us for packing dimensions'}</span>

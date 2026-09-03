@@ -12,7 +12,8 @@ import {
   CheckCircle, 
   Globe,
   Upload,
-  Eye
+  Eye,
+  Truck
 } from 'lucide-react';
 
 const createEmptyProduct = () => ({
@@ -27,13 +28,51 @@ const createEmptyProduct = () => ({
   images: []
 });
 
+const createEmptyStockItem = () => ({
+  code: 'NSL' + String(Math.floor(1 + Math.random() * 999)).padStart(3, '0'),
+  name: '',
+  material: 'Atlantic',
+  category_title: 'Atlantic',
+  dimensions: '',
+  packaging: '',
+  firing_temp: '',
+  in_stock: true,
+  images: []
+});
+
+const compressImages = (files) => Promise.all(files.map(file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.onload = () => {
+    const image = new Image();
+    image.onload = () => {
+      const maxSide = 1400;
+      const scale = Math.min(1, maxSide / Math.max(image.width, image.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(image.width * scale);
+      canvas.height = Math.round(image.height * scale);
+      const context = canvas.getContext('2d');
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL('image/jpeg', 0.86));
+    };
+    image.onerror = reject;
+    image.src = reader.result;
+  };
+  reader.onerror = reject;
+  reader.readAsDataURL(file);
+})));
+
 export default function AdminDashboard({ data, setData, setIsAdminMode, inquiries = [] }) {
-  const [activeTab, setActiveTab] = useState('products'); // 'dashboard', 'products', 'media', 'pages', 'inquiries'
+  const [activeTab, setActiveTab] = useState('products');
   const [editingProduct, setEditingProduct] = useState(null);
   const [showAddProductModal, setShowAddProductModal] = useState(false);
+  const [editingStockItem, setEditingStockItem] = useState(null);
+  const [showStockModal, setShowStockModal] = useState(false);
   const [saveNotification, setSaveNotification] = useState(false);
 
   const [newProd, setNewProd] = useState(createEmptyProduct);
+  const [stockDraft, setStockDraft] = useState(createEmptyStockItem);
 
   // Company info form state
   const [companyForm, setCompanyForm] = useState(data?.company || {});
@@ -64,28 +103,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
 
   const handleProductImageUpload = async (event) => {
     const files = Array.from(event.target.files || []);
-    const uploadedImages = await Promise.all(files.map(file => new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const image = new Image();
-        image.onload = () => {
-          const maxSide = 1400;
-          const scale = Math.min(1, maxSide / Math.max(image.width, image.height));
-          const canvas = document.createElement('canvas');
-          canvas.width = Math.round(image.width * scale);
-          canvas.height = Math.round(image.height * scale);
-          const context = canvas.getContext('2d');
-          context.fillStyle = '#ffffff';
-          context.fillRect(0, 0, canvas.width, canvas.height);
-          context.drawImage(image, 0, 0, canvas.width, canvas.height);
-          resolve(canvas.toDataURL('image/jpeg', 0.86));
-        };
-        image.onerror = reject;
-        image.src = reader.result;
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    })));
+    const uploadedImages = await compressImages(files);
     setNewProd(prev => ({ ...prev, images: [...(prev.images || []), ...uploadedImages] }));
     event.target.value = '';
   };
@@ -133,7 +151,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
 
   // Delete Product Handler
   const handleDeleteProduct = (catId, prodId) => {
-    if (window.confirm('Are you sure you want to delete this pot product from WordPress catalog?')) {
+    if (window.confirm('Are you sure you want to delete this pot product from the catalog?')) {
       const updatedCategories = data.categories.map((cat) => {
         if (cat.id === catId) {
           return {
@@ -144,6 +162,56 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
         return cat;
       });
       setData({ ...data, categories: updatedCategories });
+      showSavedAlert();
+    }
+  };
+
+  const openAddStockItem = () => {
+    setEditingStockItem(null);
+    setStockDraft(createEmptyStockItem());
+    setShowStockModal(true);
+  };
+
+  const openEditStockItem = (item) => {
+    setEditingStockItem(item.id);
+    setStockDraft({
+      ...item,
+      dimensions: item.dimensions || '',
+      packaging: item.packaging || '',
+      images: item.images || []
+    });
+    setShowStockModal(true);
+  };
+
+  const handleStockImageUpload = async (event) => {
+    const files = Array.from(event.target.files || []);
+    const uploadedImages = await compressImages(files);
+    setStockDraft(prev => ({ ...prev, images: [...(prev.images || []), ...uploadedImages] }));
+    event.target.value = '';
+  };
+
+  const handleSaveStockItem = (event) => {
+    event.preventDefault();
+    const stockItem = {
+      ...stockDraft,
+      id: editingStockItem || `stock-${Date.now()}`,
+      category_title: stockDraft.material,
+      in_stock: true,
+      images: stockDraft.images?.length ? stockDraft.images : ['/images/home_banner_1.jpg']
+    };
+    const currentStock = data.stock_list || [];
+    const stockList = editingStockItem
+      ? currentStock.map(item => item.id === editingStockItem ? stockItem : item)
+      : [stockItem, ...currentStock];
+    setData({ ...data, stock_list: stockList });
+    setShowStockModal(false);
+    setEditingStockItem(null);
+    showSavedAlert();
+  };
+
+  const handleDeleteStockItem = (stockId) => {
+    if (window.confirm('Are you sure you want to remove this item from the Stock List?')) {
+      setData({ ...data, stock_list: (data.stock_list || []).filter(item => item.id !== stockId) });
       showSavedAlert();
     }
   };
@@ -211,6 +279,14 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
               <Package className="w-4 h-4" /> Products ({allProducts.length})
             </button>
             <button
+              onClick={() => setActiveTab('stock-list')}
+              className={`w-full flex items-center gap-2.5 px-3 py-2 rounded text-xs font-medium transition-colors ${
+                activeTab === 'stock-list' ? 'bg-[#C85A32] text-white' : 'text-[#A89F91] hover:bg-[#2B2725] hover:text-white'
+              }`}
+            >
+              <Truck className="w-4 h-4" /> Stock List ({data?.stock_list?.length || 0})
+            </button>
+            <button
               onClick={() => setActiveTab('media')}
               className={`w-full flex items-center gap-2.5 px-3 py-2 rounded text-xs font-medium transition-colors ${
                 activeTab === 'media' ? 'bg-[#C85A32] text-white' : 'text-[#A89F91] hover:bg-[#2B2725] hover:text-white'
@@ -258,7 +334,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                 </div>
                 <div className="bg-[#2B2725] border border-[#3A3532] rounded-lg p-4 space-y-1">
                   <span className="text-xs text-[#A89F91]">In-Stock Items</span>
-                  <p className="font-serif text-3xl font-bold text-[#5C6B57]">{allProducts.filter(p => p.in_stock).length}</p>
+                  <p className="font-serif text-3xl font-bold text-[#5C6B57]">{data?.stock_list?.length || 0}</p>
                 </div>
                 <div className="bg-[#2B2725] border border-[#3A3532] rounded-lg p-4 space-y-1">
                   <span className="text-xs text-[#A89F91]">Quote Inquiries</span>
@@ -274,6 +350,12 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                     className="px-4 py-2 bg-[#C85A32] hover:bg-[#A34828] text-white text-xs font-semibold rounded flex items-center gap-1.5"
                   >
                     <Plus className="w-4 h-4" /> Add New Pot Model
+                  </button>
+                  <button
+                    onClick={() => { setActiveTab('stock-list'); openAddStockItem(); }}
+                    className="px-4 py-2 bg-[#C59B27] hover:bg-[#A98520] text-white text-xs font-semibold rounded flex items-center gap-1.5"
+                  >
+                    <Truck className="w-4 h-4" /> Add Stock Item
                   </button>
                   <button
                     onClick={() => setActiveTab('pages')}
@@ -311,7 +393,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
               <div className="bg-[#252220] border border-[#3A3532] rounded-lg p-4 flex items-start gap-3 text-xs text-[#CFC6B8]">
                 <Upload className="w-5 h-5 text-[#C59B27] shrink-0" />
                 <p>
-                  To update the homepage featured area or Stock List, click <strong className="text-white">Edit</strong> on a product, upload or remove its photos, then set <strong className="text-white">Stock status</strong> to “In Stock”. Exact pot and packing sizes can be entered in the same form.
+                  Click <strong className="text-white">Edit</strong> to update product photos, material, firing temperature, dimensions, packaging and availability. Ready-to-ship items are managed separately in the <strong className="text-white">Stock List</strong> tab.
                 </p>
               </div>
 
@@ -374,12 +456,83 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
             </div>
           )}
 
+          {/* STOCK LIST MANAGER */}
+          {activeTab === 'stock-list' && (
+            <div className="space-y-6 animate-fade-in">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                  <h1 className="font-serif text-2xl font-bold text-white">Ready Stock Management</h1>
+                  <p className="text-xs text-[#A89F91]">Manage the items displayed on the Stock List page and homepage featured section.</p>
+                </div>
+                <button
+                  onClick={openAddStockItem}
+                  className="px-4 py-2 bg-[#C85A32] hover:bg-[#A34828] text-white text-xs font-semibold rounded shadow flex items-center gap-1.5"
+                >
+                  <Plus className="w-4 h-4" /> Add Stock Item
+                </button>
+              </div>
+
+              <div className="bg-[#252220] border border-[#3A3532] rounded-lg p-4 flex items-start gap-3 text-xs text-[#CFC6B8]">
+                <Upload className="w-5 h-5 text-[#C59B27] shrink-0" />
+                <p>Use <strong className="text-white">Edit</strong> to change dimensions, packing quantity or photos. The first photo becomes the cover image.</p>
+              </div>
+
+              <div className="bg-[#2B2725] border border-[#3A3532] rounded-lg overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs text-[#E5DFD5]">
+                    <thead className="bg-[#1D1B1A] border-b border-[#3A3532] text-[#A89F91] uppercase font-semibold">
+                      <tr>
+                        <th className="p-3">Image</th>
+                        <th className="p-3">Code</th>
+                        <th className="p-3">Name</th>
+                        <th className="p-3">Material</th>
+                        <th className="p-3">Dimensions</th>
+                        <th className="p-3">Packaging</th>
+                        <th className="p-3 text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#3A3532]">
+                      {(data?.stock_list || []).map(item => (
+                        <tr key={item.id} className="hover:bg-[#342F2C] transition-colors">
+                          <td className="p-3">
+                            <img src={item.images?.[0]} alt="" className="w-12 h-12 object-contain rounded bg-white" />
+                          </td>
+                          <td className="p-3 font-mono font-bold text-[#C59B27]">{item.code}</td>
+                          <td className="p-3 font-semibold text-white">{item.name}</td>
+                          <td className="p-3 text-[#A89F91]">{item.material}</td>
+                          <td className="p-3 text-[#A89F91] min-w-48">{item.dimensions}</td>
+                          <td className="p-3 text-[#A89F91] min-w-36">{item.packaging}</td>
+                          <td className="p-3 text-right whitespace-nowrap">
+                            <button
+                              onClick={() => openEditStockItem(item)}
+                              className="p-1.5 text-[#C59B27] hover:bg-[#1D1B1A] rounded"
+                              title="Edit stock item"
+                            >
+                              <Edit className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => handleDeleteStockItem(item.id)}
+                              className="p-1.5 text-[#C85A32] hover:bg-[#1D1B1A] rounded"
+                              title="Delete stock item"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* TAB 3: MEDIA & BANNERS */}
           {activeTab === 'media' && (
             <div className="space-y-6 animate-fade-in">
               <div>
                 <h1 className="font-serif text-2xl font-bold text-white">Media Library & Homepage Banners</h1>
-                <p className="text-xs text-[#A89F91]">Manage background sliders and category cover photos. Product and stock images are managed from the Products tab.</p>
+                <p className="text-xs text-[#A89F91]">Manage background sliders and category cover photos. Product and stock images are managed from their respective tabs.</p>
               </div>
 
               <div className="space-y-4">
@@ -606,7 +759,7 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="space-y-1">
                   <label className="font-semibold text-white">Material</label>
                   <input
@@ -614,6 +767,16 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                     value={newProd.material || ''}
                     onChange={(e) => setNewProd({ ...newProd, material: e.target.value })}
                     placeholder="e.g. Glazed Ceramic"
+                    className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="font-semibold text-white">Firing temperature</label>
+                  <input
+                    type="text"
+                    value={newProd.firing_temp || ''}
+                    onChange={(e) => setNewProd({ ...newProd, firing_temp: e.target.value })}
+                    placeholder="e.g. 900°C; blank if not fired"
                     className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white"
                   />
                 </div>
@@ -677,6 +840,129 @@ export default function AdminDashboard({ data, setData, setIsAdminMode, inquirie
                   className="px-5 py-2 bg-[#C85A32] hover:bg-[#A34828] text-white font-semibold rounded"
                 >
                   <Save className="w-4 h-4 inline mr-1" /> {editingProduct ? 'Save Product Changes' : 'Add To Catalog'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Add / edit ready-stock item modal */}
+      {showStockModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
+          <div className="bg-[#2B2725] border border-[#3A3532] rounded-xl max-w-2xl w-full max-h-[92vh] overflow-y-auto p-6 space-y-4 text-xs text-[#E5DFD5]">
+            <div className="flex items-center justify-between border-b border-[#3A3532] pb-3">
+              <h3 className="font-serif text-lg font-bold text-white">{editingStockItem ? 'Edit Stock Item' : 'Add Stock Item'}</h3>
+              <button onClick={() => { setShowStockModal(false); setEditingStockItem(null); }} className="text-[#A89F91] hover:text-white">✕</button>
+            </div>
+
+            <form onSubmit={handleSaveStockItem} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="font-semibold text-white">Stock Code *</label>
+                  <input
+                    type="text"
+                    required
+                    value={stockDraft.code}
+                    onChange={(e) => setStockDraft({ ...stockDraft, code: e.target.value })}
+                    className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="font-semibold text-white">Material *</label>
+                  <input
+                    type="text"
+                    required
+                    value={stockDraft.material || ''}
+                    onChange={(e) => setStockDraft({ ...stockDraft, material: e.target.value })}
+                    placeholder="e.g. Atlantic or Glazed Ceramic"
+                    className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <label className="font-semibold text-white">Product Name *</label>
+                <input
+                  type="text"
+                  required
+                  value={stockDraft.name}
+                  onChange={(e) => setStockDraft({ ...stockDraft, name: e.target.value })}
+                  placeholder="e.g. NSL001-Atlantic Planter Set"
+                  className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="font-semibold text-white">Dimensions</label>
+                  <input
+                    type="text"
+                    value={stockDraft.dimensions || ''}
+                    onChange={(e) => setStockDraft({ ...stockDraft, dimensions: e.target.value })}
+                    placeholder="e.g. 56cm × 26cm; 44cm × 17cm"
+                    className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="font-semibold text-white">Packaging</label>
+                  <input
+                    type="text"
+                    value={stockDraft.packaging || ''}
+                    onChange={(e) => setStockDraft({ ...stockDraft, packaging: e.target.value })}
+                    placeholder="e.g. 32 sets/pallet"
+                    className="w-full px-3 py-2 bg-[#1D1B1A] border border-[#3A3532] rounded text-white"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-3 border border-[#3A3532] rounded-lg p-4 bg-[#24211F]">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <label className="font-semibold text-white block">Stock photos</label>
+                    <p className="text-[10px] text-[#8F867C]">Upload one or more photos. The first photo is the cover.</p>
+                  </div>
+                  <label className="px-3 py-2 bg-[#5C6B57] hover:bg-[#495545] text-white rounded flex items-center gap-1.5 cursor-pointer shrink-0">
+                    <Upload className="w-4 h-4" /> Upload photos
+                    <input type="file" accept="image/*" multiple onChange={handleStockImageUpload} className="hidden" />
+                  </label>
+                </div>
+
+                {stockDraft.images?.length ? (
+                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
+                    {stockDraft.images.map((image, index) => (
+                      <div key={`${image.slice(0, 40)}-${index}`} className="relative aspect-square bg-white rounded overflow-hidden group">
+                        <img src={image} alt={`Stock ${index + 1}`} className="w-full h-full object-contain p-1" />
+                        <button
+                          type="button"
+                          onClick={() => setStockDraft(prev => ({
+                            ...prev,
+                            images: (prev.images || []).filter((_, imageIndex) => imageIndex !== index)
+                          }))}
+                          className="absolute top-1 right-1 p-1 bg-black/70 hover:bg-[#A34828] text-white rounded"
+                          title="Remove photo"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                        {index === 0 && <span className="absolute bottom-1 left-1 bg-black/70 text-white text-[9px] px-1.5 py-0.5 rounded">Cover</span>}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-[#8F867C] text-center py-3">No stock photos yet.</p>
+                )}
+              </div>
+
+              <div className="pt-2 flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => { setShowStockModal(false); setEditingStockItem(null); }}
+                  className="px-4 py-2 bg-[#3A3532] text-white rounded"
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="px-5 py-2 bg-[#C85A32] hover:bg-[#A34828] text-white font-semibold rounded">
+                  <Save className="w-4 h-4 inline mr-1" /> {editingStockItem ? 'Save Stock Changes' : 'Add To Stock List'}
                 </button>
               </div>
             </form>

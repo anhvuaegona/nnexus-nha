@@ -9,7 +9,7 @@
     "brand_quote": "Our pots are meticulously handcrafted by skilled artisans in Vietnam, employing traditional techniques passed down through generations. Fired at high temperatures exceeding 1100°C, subtle variations in colour, texture, and detail naturally emerge, ensuring that no two pieces are exactly alike. Each pot is not merely a garden element, but a unique work of art that celebrates the timeless beauty of hand-wrought pottery."
   },
   "home_sliders": [
-    "/images/home_banner_1.jpg",
+    "/stock-lists/home pages.jpg",
     "/images/home_banner_2.jpg",
     "/images/home_banner_3.jpg",
     "/images/home_banner_4.jpg",
@@ -29,7 +29,7 @@
           "name": "NGC0005-Tall Tapered Planter",
           "category_id": "glazed-ceramic",
           "category_title": "Glazed Ceramic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "45 × 54 cm; 34 × 45 cm; 24 × 26 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Glazed Ceramic",
@@ -41,15 +41,16 @@
             "/images/prod_glazed-ceramic_1_4.jpg",
             "/images/prod_glazed-ceramic_1_5.jpg",
             "/images/prod_glazed-ceramic_1_6.jpg"
-          ]
+          ],
+          "packaging": "24 sets/pallet"
         },
         {
           "id": "prod-2",
-          "code": "NGC0006",
-          "name": "NGC0006-Conical Planter",
+          "code": "NGC0004",
+          "name": "NGC0004-Round Planter",
           "category_id": "glazed-ceramic",
           "category_title": "Glazed Ceramic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "36 × 32 cm; 29 × 27 cm; 23 × 21 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Glazed Ceramic",
@@ -60,7 +61,8 @@
             "/images/prod_glazed-ceramic_2_3.png",
             "/images/prod_glazed-ceramic_2_4.png",
             "/images/prod_glazed-ceramic_2_5.png"
-          ]
+          ],
+          "packaging": "63 sets/pallet"
         },
         {
           "id": "prod-3",
@@ -68,7 +70,7 @@
           "name": "NGC0006-Tall Tapered Planter",
           "category_id": "glazed-ceramic",
           "category_title": "Glazed Ceramic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "33 × 45 cm; 23 × 24 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Glazed Ceramic",
@@ -82,7 +84,8 @@
             "/images/prod_glazed-ceramic_3_6.jpg",
             "/images/prod_glazed-ceramic_3_7.jpg",
             "/images/prod_glazed-ceramic_3_8.jpg"
-          ]
+          ],
+          "packaging": "45 sets/pallet"
         },
         {
           "id": "prod-4",
@@ -90,7 +93,7 @@
           "name": "NGC0009-Tall Tapered Planter",
           "category_id": "glazed-ceramic",
           "category_title": "Glazed Ceramic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "44 × 54 cm; 33 × 43 cm; 22 × 35 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Glazed Ceramic",
@@ -100,7 +103,8 @@
             "/images/prod_glazed-ceramic_4_2.png",
             "/images/prod_glazed-ceramic_4_3.png",
             "/images/prod_glazed-ceramic_4_4.png"
-          ]
+          ],
+          "packaging": "24 sets/pallet"
         },
         {
           "id": "prod-5",
@@ -108,34 +112,18 @@
           "name": "NGC0016-Tapered Planter",
           "category_id": "glazed-ceramic",
           "category_title": "Glazed Ceramic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "44 × 54 cm; 33 × 43 cm; 22 × 35 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Glazed Ceramic",
           "in_stock": true,
           "images": [
             "/images/prod_glazed-ceramic_5_1.jpg",
-            "/images/prod_glazed-ceramic_5_2.png",
             "/images/prod_glazed-ceramic_5_3.png",
-            "/images/prod_glazed-ceramic_5_4.png",
-            "/images/prod_glazed-ceramic_5_5.jpg",
-            "/images/prod_glazed-ceramic_5_6.png",
             "/images/prod_glazed-ceramic_5_7.jpg",
-            "/images/prod_glazed-ceramic_5_8.png",
-            "/images/prod_glazed-ceramic_5_9.png",
-            "/images/prod_glazed-ceramic_5_10.png",
-            "/images/prod_glazed-ceramic_5_11.png",
-            "/images/prod_glazed-ceramic_5_12.png",
-            "/images/prod_glazed-ceramic_5_13.jpg",
-            "/images/prod_glazed-ceramic_5_14.jpg",
-            "/images/prod_glazed-ceramic_5_15.jpg",
-            "/images/prod_glazed-ceramic_5_16.jpg",
-            "/images/prod_glazed-ceramic_5_17.jpg",
-            "/images/prod_glazed-ceramic_5_18.jpg",
-            "/images/prod_glazed-ceramic_5_19.jpg",
-            "/images/prod_glazed-ceramic_5_20.jpg",
-            "/images/prod_glazed-ceramic_5_21.jpg"
-          ]
+            "/images/prod_glazed-ceramic_5_9.png"
+          ],
+          "packaging": "24 sets/pallet"
         },
         {
           "id": "prod-6",
@@ -143,7 +131,7 @@
           "name": "NGC5001-Cup planter",
           "category_id": "glazed-ceramic",
           "category_title": "Glazed Ceramic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "70 × 80 cm; 50 × 60 cm; 32 × 41 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Glazed Ceramic",
@@ -151,7 +139,8 @@
           "images": [
             "/images/prod_glazed-ceramic_6_1.jpg",
             "/images/prod_glazed-ceramic_6_2.jpg"
-          ]
+          ],
+          "packaging": "4 sets/pallet"
         },
         {
           "id": "prod-7",
@@ -159,7 +148,7 @@
           "name": "NGC5008-Cylinder planter",
           "category_id": "glazed-ceramic",
           "category_title": "Glazed Ceramic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "78 × 74 cm; 58 × 57 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Glazed Ceramic",
@@ -169,7 +158,8 @@
             "/images/prod_glazed-ceramic_7_2.jpg",
             "/images/prod_glazed-ceramic_7_3.jpg",
             "/images/prod_glazed-ceramic_7_4.jpg"
-          ]
+          ],
+          "packaging": "3 sets/pallet"
         },
         {
           "id": "prod-8",
@@ -177,7 +167,7 @@
           "name": "NGC5011-Tapered planter",
           "category_id": "glazed-ceramic",
           "category_title": "Glazed Ceramic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "72 × 91 cm; 57 × 76 cm; 48 × 59 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Glazed Ceramic",
@@ -187,7 +177,8 @@
             "/images/prod_glazed-ceramic_8_2.jpg",
             "/images/prod_glazed-ceramic_8_3.jpg",
             "/images/prod_glazed-ceramic_8_4.jpg"
-          ]
+          ],
+          "packaging": "4 sets/pallet"
         },
         {
           "id": "prod-9",
@@ -195,7 +186,7 @@
           "name": "NGC5014-Round planter",
           "category_id": "glazed-ceramic",
           "category_title": "Glazed Ceramic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "60 × 54 cm; 47 × 45 cm; 37 × 36 cm; 29 × 29 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Glazed Ceramic",
@@ -205,7 +196,8 @@
             "/images/prod_glazed-ceramic_9_2.jpg",
             "/images/prod_glazed-ceramic_9_3.jpg",
             "/images/prod_glazed-ceramic_9_4.jpg"
-          ]
+          ],
+          "packaging": "16 sets/pallet"
         },
         {
           "id": "prod-10",
@@ -213,7 +205,7 @@
           "name": "NGC5016-Cube planter",
           "category_id": "glazed-ceramic",
           "category_title": "Glazed Ceramic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "65 × 50 cm; 36 × 31 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Glazed Ceramic",
@@ -221,7 +213,8 @@
           "images": [
             "/images/prod_glazed-ceramic_10_1.jpg",
             "/images/prod_glazed-ceramic_10_2.jpg"
-          ]
+          ],
+          "packaging": "16 sets/pallet"
         }
       ]
     },
@@ -238,18 +231,19 @@
           "name": "NGP0001-Roll Rim Planter",
           "category_id": "giant-planters",
           "category_title": "Giant Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "93 × 100 cm; 70 × 80 cm; 55 × 60 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
-          "material": "Giant",
+          "material": "Glazed Ceramic",
           "in_stock": false,
           "images": [
+            "/images/prod_giant-planters_11_4.jpg",
             "/images/prod_giant-planters_11_1.jpg",
             "/images/prod_giant-planters_11_2.jpg",
             "/images/prod_giant-planters_11_3.jpg",
-            "/images/prod_giant-planters_11_4.jpg",
             "/images/prod_giant-planters_11_5.jpg"
-          ]
+          ],
+          "packaging": "2 sets/pallet"
         },
         {
           "id": "prod-12",
@@ -257,15 +251,16 @@
           "name": "NGP0003-Cup planter",
           "category_id": "giant-planters",
           "category_title": "Giant Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "100 × 116 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
-          "material": "Giant",
+          "material": "Glazed Ceramic",
           "in_stock": true,
           "images": [
             "/images/prod_giant-planters_12_1.jpg",
             "/images/prod_giant-planters_12_2.jpg"
-          ]
+          ],
+          "packaging": "2 sets/pallet"
         },
         {
           "id": "prod-13",
@@ -273,16 +268,17 @@
           "name": "NGP0005-Round Planter",
           "category_id": "giant-planters",
           "category_title": "Giant Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "120 × 73 cm; 73 × 65 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
-          "material": "Giant",
+          "material": "Glazed Ceramic",
           "in_stock": false,
           "images": [
             "/images/prod_giant-planters_13_1.png",
             "/images/prod_giant-planters_13_2.png",
             "/images/prod_giant-planters_13_3.png"
-          ]
+          ],
+          "packaging": "3 sets/pallet"
         },
         {
           "id": "prod-14",
@@ -290,16 +286,17 @@
           "name": "NGP0006-Round Planter",
           "category_id": "giant-planters",
           "category_title": "Giant Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "110 × 90 cm; 85 × 60 cm; 60 × 50 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
-          "material": "Giant",
+          "material": "Glazed Ceramic",
           "in_stock": true,
           "images": [
             "/images/prod_giant-planters_14_1.jpg",
             "/images/prod_giant-planters_14_2.jpg",
             "/images/prod_giant-planters_14_3.jpg"
-          ]
+          ],
+          "packaging": "2 sets/pallet"
         },
         {
           "id": "prod-15",
@@ -307,14 +304,15 @@
           "name": "NGP0011-Urn Planter",
           "category_id": "giant-planters",
           "category_title": "Giant Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "90 × 110 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
-          "material": "Giant",
+          "material": "Glazed Ceramic",
           "in_stock": false,
           "images": [
             "/images/prod_giant-planters_15_1.jpg"
-          ]
+          ],
+          "packaging": "2 pcs/pallet"
         },
         {
           "id": "prod-16",
@@ -322,14 +320,15 @@
           "name": "NGP0015-Urn Planter",
           "category_id": "giant-planters",
           "category_title": "Giant Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "90 × 150 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
-          "material": "Giant",
+          "material": "Glazed Ceramic",
           "in_stock": true,
           "images": [
             "/images/prod_giant-planters_16_1.jpg"
-          ]
+          ],
+          "packaging": "1 pc/pallet"
         },
         {
           "id": "prod-17",
@@ -337,16 +336,17 @@
           "name": "NGP0020-Round Planter",
           "category_id": "giant-planters",
           "category_title": "Giant Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "80 × 57 cm; 67 × 50 cm; 44 × 37 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
-          "material": "Giant",
+          "material": "Glazed Ceramic",
           "in_stock": false,
           "images": [
-            "/images/prod_giant-planters_17_1.jpg",
             "/images/prod_giant-planters_17_2.jpg",
+            "/images/prod_giant-planters_17_1.jpg",
             "/images/prod_giant-planters_17_3.jpg"
-          ]
+          ],
+          "packaging": "4 sets/pallet"
         }
       ]
     },
@@ -363,7 +363,7 @@
           "name": "NAT001-Tapered planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "55 × 70 cm; 45 × 55 cm; 35 × 45 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
@@ -376,7 +376,8 @@
             "/images/prod_atlantic-planters_18_5.jpg",
             "/images/prod_atlantic-planters_18_6.jpg",
             "/images/prod_atlantic-planters_18_7.jpg"
-          ]
+          ],
+          "packaging": "12 sets/pallet"
         },
         {
           "id": "prod-19",
@@ -384,7 +385,7 @@
           "name": "NAT003-Cup planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "60 × 67 cm; 41 × 47 cm; 30 × 32 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
@@ -392,7 +393,8 @@
           "images": [
             "/images/prod_atlantic-planters_19_1.jpg",
             "/images/prod_atlantic-planters_19_2.jpg"
-          ]
+          ],
+          "packaging": "12 sets/pallet"
         },
         {
           "id": "prod-20",
@@ -400,7 +402,7 @@
           "name": "NAT004-Round planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "56 × 40 cm; 41 × 30 cm; 30 × 32 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
@@ -409,7 +411,8 @@
             "/images/prod_atlantic-planters_20_1.jpg",
             "/images/prod_atlantic-planters_20_2.jpg",
             "/images/prod_atlantic-planters_20_3.jpg"
-          ]
+          ],
+          "packaging": "20 sets/pallet"
         },
         {
           "id": "prod-21",
@@ -417,7 +420,7 @@
           "name": "NAT006-Belly planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "55 × 52 cm; 38 × 38 cm; 23 × 21 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
@@ -428,7 +431,8 @@
             "/images/prod_atlantic-planters_21_3.jpg",
             "/images/prod_atlantic-planters_21_4.jpg",
             "/images/prod_atlantic-planters_21_5.jpg"
-          ]
+          ],
+          "packaging": "16 sets/pallet"
         },
         {
           "id": "prod-22",
@@ -436,7 +440,7 @@
           "name": "NAT015-Cylinder planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "54 × 64 cm; 44 × 57 cm; 35 × 50 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
@@ -446,7 +450,8 @@
             "/images/prod_atlantic-planters_22_2.jpg",
             "/images/prod_atlantic-planters_22_3.jpg",
             "/images/prod_atlantic-planters_22_4.jpg"
-          ]
+          ],
+          "packaging": "12 sets/pallet"
         },
         {
           "id": "prod-23",
@@ -454,17 +459,18 @@
           "name": "NAT017-Belly planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "70 × 58 cm; 56 × 44 cm; 42 × 32 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
           "in_stock": false,
           "images": [
+            "/images/prod_atlantic-planters_23_3.jpg",
             "/images/prod_atlantic-planters_23_1.jpg",
             "/images/prod_atlantic-planters_23_2.jpg",
-            "/images/prod_atlantic-planters_23_3.jpg",
             "/images/prod_atlantic-planters_23_4.jpg"
-          ]
+          ],
+          "packaging": "8 sets/pallet"
         },
         {
           "id": "prod-24",
@@ -472,7 +478,7 @@
           "name": "NAT021-Urn planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "75 × 50 cm; 52 × 35 cm; 34 × 24 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
@@ -483,7 +489,8 @@
             "/images/prod_atlantic-planters_24_3.jpg",
             "/images/prod_atlantic-planters_24_4.jpg",
             "/images/prod_atlantic-planters_24_5.jpg"
-          ]
+          ],
+          "packaging": "4 sets/pallet"
         },
         {
           "id": "prod-25",
@@ -491,14 +498,15 @@
           "name": "NAT030-Round planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "72 × 60 cm; 47 × 48 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
           "in_stock": false,
           "images": [
             "/images/prod_atlantic-planters_25_1.png"
-          ]
+          ],
+          "packaging": "4 sets/pallet"
         },
         {
           "id": "prod-26",
@@ -506,19 +514,17 @@
           "name": "NAT034-Cup planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "63 × 73 cm; 46 × 56 cm; 32 × 42 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
           "in_stock": true,
           "images": [
-            "/images/prod_atlantic-planters_26_1.jpg",
-            "/images/prod_atlantic-planters_26_2.jpg",
-            "/images/prod_atlantic-planters_26_3.jpg",
+            "/images/prod_atlantic-planters_26_6.jpg",
             "/images/prod_atlantic-planters_26_4.jpg",
-            "/images/prod_atlantic-planters_26_5.jpg",
-            "/images/prod_atlantic-planters_26_6.jpg"
-          ]
+            "/images/prod_atlantic-planters_26_5.jpg"
+          ],
+          "packaging": "12 sets/pallet"
         },
         {
           "id": "prod-27",
@@ -526,14 +532,15 @@
           "name": "NAT035-Urn planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "88 × 85 cm; 67 × 66 cm; 55 × 55 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
           "in_stock": false,
           "images": [
             "/images/prod_atlantic-planters_27_1.jpg"
-          ]
+          ],
+          "packaging": "2 sets/pallet"
         },
         {
           "id": "prod-28",
@@ -541,14 +548,15 @@
           "name": "NAT037-Round planter",
           "category_id": "atlantic-planters",
           "category_title": "Atlantic Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "57 × 48 cm; 45 × 39 cm; 35 × 30 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Atlantic",
           "in_stock": true,
           "images": [
             "/images/prod_atlantic-planters_28_1.png"
-          ]
+          ],
+          "packaging": "16 sets/pallet"
         }
       ]
     },
@@ -565,20 +573,16 @@
           "name": "NTR0001-Tapered Planter",
           "category_id": "terracotta-planters",
           "category_title": "Terracotta Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "61 × 51 cm; 50 × 40 cm; 41 × 31 cm; 33 × 28 cm",
           "finish": "Hand-crafted Artisanal Finish",
-          "firing_temp": "1100°C High Fired",
+          "firing_temp": "900°C",
           "material": "Terracotta",
           "in_stock": false,
           "images": [
             "/images/prod_terracotta-planters_29_1.jpg",
-            "/images/prod_terracotta-planters_29_2.jpg",
-            "/images/prod_terracotta-planters_29_3.jpg",
-            "/images/prod_terracotta-planters_29_4.jpg",
-            "/images/prod_terracotta-planters_29_5.jpg",
-            "/images/prod_terracotta-planters_29_6.jpg",
-            "/images/prod_terracotta-planters_29_7.jpg"
-          ]
+            "/images/prod_terracotta-planters_29_3.jpg"
+          ],
+          "packaging": "16 sets/pallet"
         },
         {
           "id": "prod-30",
@@ -586,15 +590,16 @@
           "name": "NTR0004-Round Planter",
           "category_id": "terracotta-planters",
           "category_title": "Terracotta Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "56 × 47 cm; 45 × 38 cm; 35 × 29 cm; 26 × 21 cm; 18 × 18 cm",
           "finish": "Hand-crafted Artisanal Finish",
-          "firing_temp": "1100°C High Fired",
+          "firing_temp": "900°C",
           "material": "Terracotta",
           "in_stock": true,
           "images": [
             "/images/prod_terracotta-planters_30_1.jpg",
             "/images/prod_terracotta-planters_30_2.jpg"
-          ]
+          ],
+          "packaging": "16 sets/pallet"
         },
         {
           "id": "prod-31",
@@ -602,14 +607,15 @@
           "name": "NTR0007-Square Planter",
           "category_id": "terracotta-planters",
           "category_title": "Terracotta Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "55 × 47 cm; 45 × 38 cm; 35 × 32 cm; 29 × 24 cm",
           "finish": "Hand-crafted Artisanal Finish",
-          "firing_temp": "1100°C High Fired",
+          "firing_temp": "900°C",
           "material": "Terracotta",
           "in_stock": false,
           "images": [
             "/images/prod_terracotta-planters_31_1.jpg"
-          ]
+          ],
+          "packaging": "16 sets/pallet"
         },
         {
           "id": "prod-32",
@@ -617,14 +623,15 @@
           "name": "NTR0009-Pedestal Urn Planter",
           "category_id": "terracotta-planters",
           "category_title": "Terracotta Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "60 × 69 cm; 45 × 52 cm",
           "finish": "Hand-crafted Artisanal Finish",
-          "firing_temp": "1100°C High Fired",
+          "firing_temp": "900°C",
           "material": "Terracotta",
           "in_stock": true,
           "images": [
             "/images/prod_terracotta-planters_32_1.jpg"
-          ]
+          ],
+          "packaging": "12 sets/pallet"
         },
         {
           "id": "prod-33",
@@ -632,14 +639,15 @@
           "name": "NTR0012-Festoon Planter",
           "category_id": "terracotta-planters",
           "category_title": "Terracotta Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "69 × 68 cm; 52 × 51 cm; 32 × 35 cm; 22 × 25 cm",
           "finish": "Hand-crafted Artisanal Finish",
-          "firing_temp": "1100°C High Fired",
+          "firing_temp": "900°C",
           "material": "Terracotta",
           "in_stock": false,
           "images": [
             "/images/prod_terracotta-planters_33_1.png"
-          ]
+          ],
+          "packaging": "6 sets/pallet"
         },
         {
           "id": "prod-34",
@@ -649,7 +657,7 @@
           "category_title": "Terracotta Planters",
           "dimensions": "Custom Sizes Available",
           "finish": "Hand-crafted Artisanal Finish",
-          "firing_temp": "1100°C High Fired",
+          "firing_temp": "900°C",
           "material": "Terracotta",
           "in_stock": true,
           "images": [
@@ -663,15 +671,16 @@
           "name": "NTR0029-Ovoid Planter",
           "category_id": "terracotta-planters",
           "category_title": "Terracotta Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "51 × 73 cm; 36 × 50 cm; 22 × 51 cm",
           "finish": "Hand-crafted Artisanal Finish",
-          "firing_temp": "1100°C High Fired",
+          "firing_temp": "900°C",
           "material": "Terracotta",
           "in_stock": false,
           "images": [
             "/images/prod_terracotta-planters_35_1.jpg",
             "/images/prod_terracotta-planters_35_2.jpg"
-          ]
+          ],
+          "packaging": "12 sets/pallet"
         },
         {
           "id": "prod-36",
@@ -679,15 +688,16 @@
           "name": "NTR0030-Traditional Urn Planter",
           "category_id": "terracotta-planters",
           "category_title": "Terracotta Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "48 × 59 cm; 38 × 50 cm",
           "finish": "Hand-crafted Artisanal Finish",
-          "firing_temp": "1100°C High Fired",
+          "firing_temp": "900°C",
           "material": "Terracotta",
           "in_stock": true,
           "images": [
             "/images/prod_terracotta-planters_36_1.jpg",
             "/images/prod_terracotta-planters_36_2.jpg"
-          ]
+          ],
+          "packaging": "12 sets/pallet"
         },
         {
           "id": "prod-37",
@@ -695,15 +705,16 @@
           "name": "NTR0042-Conical Planter",
           "category_id": "terracotta-planters",
           "category_title": "Terracotta Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "60 × 60 cm; 46 × 46 cm; 35 × 35 cm",
           "finish": "Hand-crafted Artisanal Finish",
-          "firing_temp": "1100°C High Fired",
+          "firing_temp": "900°C",
           "material": "Terracotta",
           "in_stock": false,
           "images": [
             "/images/prod_terracotta-planters_37_1.jpg",
             "/images/prod_terracotta-planters_37_2.jpg"
-          ]
+          ],
+          "packaging": "12 sets/pallet"
         }
       ]
     },
@@ -720,7 +731,7 @@
           "name": "NDC0002-Round Planter",
           "category_id": "dark-clay-planters",
           "category_title": "Dark Clay Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "90 × 60 cm; 68 × 50 cm; 50 × 37 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Dark Clay",
@@ -730,7 +741,8 @@
             "/images/prod_dark-clay-planters_38_2.jpg",
             "/images/prod_dark-clay-planters_38_3.jpg",
             "/images/prod_dark-clay-planters_38_4.jpg"
-          ]
+          ],
+          "packaging": "3 sets/pallet"
         },
         {
           "id": "prod-39",
@@ -738,17 +750,16 @@
           "name": "NDC0003-Round Planter",
           "category_id": "dark-clay-planters",
           "category_title": "Dark Clay Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "93 × 86 cm; 75 × 66 cm; 55 × 48 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Dark Clay",
           "in_stock": false,
           "images": [
-            "/images/prod_dark-clay-planters_39_1.jpg",
-            "/images/prod_dark-clay-planters_39_2.jpg",
             "/images/prod_dark-clay-planters_39_3.jpg",
-            "/images/prod_dark-clay-planters_39_4.jpg"
-          ]
+            "/images/prod_dark-clay-planters_39_2.jpg"
+          ],
+          "packaging": "2 sets/pallet"
         },
         {
           "id": "prod-40",
@@ -756,15 +767,15 @@
           "name": "NDC0007-Round Planter",
           "category_id": "dark-clay-planters",
           "category_title": "Dark Clay Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "83 × 60 cm; 62 × 40 cm; 38 × 35 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Dark Clay",
           "in_stock": true,
           "images": [
-            "/images/prod_dark-clay-planters_40_1.jpg",
-            "/images/prod_dark-clay-planters_40_2.jpg"
-          ]
+            "/images/prod_dark-clay-planters_40_1.jpg"
+          ],
+          "packaging": "3 sets/pallet"
         },
         {
           "id": "prod-41",
@@ -772,17 +783,16 @@
           "name": "NDC0015-Round Planter",
           "category_id": "dark-clay-planters",
           "category_title": "Dark Clay Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "67 × 65 cm; 46 × 50 cm; 32 × 36 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Dark Clay",
           "in_stock": false,
           "images": [
-            "/images/prod_dark-clay-planters_41_1.jpg",
-            "/images/prod_dark-clay-planters_41_2.jpg",
             "/images/prod_dark-clay-planters_41_3.jpg",
-            "/images/prod_dark-clay-planters_41_4.jpg"
-          ]
+            "/images/prod_dark-clay-planters_41_2.jpg"
+          ],
+          "packaging": "6 sets/pallet"
         },
         {
           "id": "prod-42",
@@ -790,15 +800,15 @@
           "name": "NDC0017-Round Planter",
           "category_id": "dark-clay-planters",
           "category_title": "Dark Clay Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "86 × 86 cm; 70 × 70 cm; 55 × 55 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Dark Clay",
           "in_stock": true,
           "images": [
-            "/images/prod_dark-clay-planters_42_1.jpg",
-            "/images/prod_dark-clay-planters_42_2.jpg"
-          ]
+            "/images/prod_dark-clay-planters_42_1.jpg"
+          ],
+          "packaging": "2 sets/pallet"
         },
         {
           "id": "prod-43",
@@ -806,7 +816,7 @@
           "name": "NDC0019-Bowl Planter",
           "category_id": "dark-clay-planters",
           "category_title": "Dark Clay Planters",
-          "dimensions": "Custom Sizes Available",
+          "dimensions": "100 × 44 cm; 75 × 34 cm; 57 × 30 cm",
           "finish": "Hand-crafted Artisanal Finish",
           "firing_temp": "1100°C High Fired",
           "material": "Dark Clay",
@@ -814,7 +824,8 @@
           "images": [
             "/images/prod_dark-clay-planters_43_1.jpg",
             "/images/prod_dark-clay-planters_43_2.jpg"
-          ]
+          ],
+          "packaging": "5 sets/pallet"
         }
       ]
     },
@@ -824,7 +835,404 @@
       "subtitle": "Lightweight high-strength composite pots & architectural concrete",
       "description": "Modern lightweight composite planters combining pulverized stone and fiberglass for sleek industrial designs with effortless mobility.",
       "cover_image": "/images/cat_cover_fiberstone-cement.jpg",
-      "products": []
+      "products": [
+        {
+          "id": "prod-44",
+          "code": "NFB0001",
+          "name": "NFB0001-Round Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "90 × 67 cm; 72 × 53 cm; 57 × 42 cm; 45 × 35 cm; 35 × 27 cm; 27 × 20 cm",
+          "packaging": "3 sets/pallet",
+          "material": "Fiberstone",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_nfb0001_1.png"
+          ]
+        },
+        {
+          "id": "prod-45",
+          "code": "NFB0002",
+          "name": "NFB0002-Tulip Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "54 × 67 cm; 36 × 49 cm; 25 × 30 cm",
+          "packaging": "12 sets/pallet",
+          "material": "Fiberstone",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_nfb0002_1.png"
+          ]
+        },
+        {
+          "id": "prod-46",
+          "code": "NFB0004",
+          "name": "NFB0004-Cup Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "55 × 48 cm; 45 × 38 cm; 35 × 30 cm",
+          "packaging": "16 sets/pallet",
+          "material": "Fiberstone",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_nfb0004_1.png"
+          ]
+        },
+        {
+          "id": "prod-47",
+          "code": "NFB0006",
+          "name": "NFB0006-Rectangle Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "100 × 45 × 46 cm; 80 × 35 × 36 cm; 60 × 25 × 30 cm",
+          "packaging": "8 sets/pallet",
+          "material": "Fiberstone",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_nfb0006_1.png"
+          ]
+        },
+        {
+          "id": "prod-48",
+          "code": "NCM0002",
+          "name": "NCM0002-Tulip Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "54 × 68 cm; 38 × 55 cm; 24 × 36 cm",
+          "packaging": "12 sets/pallet",
+          "material": "Cement",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_ncm0002_1.png"
+          ]
+        },
+        {
+          "id": "prod-49",
+          "code": "NCM0003",
+          "name": "NCM0003-Round Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "50 × 50 cm; 40 × 40 cm; 30 × 30 cm; 20 × 20 cm",
+          "packaging": "16 sets/pallet",
+          "material": "Cement",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_ncm0003_1.png"
+          ]
+        },
+        {
+          "id": "prod-50",
+          "code": "NCM0004",
+          "name": "NCM0004-Faceted Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "50 × 55 cm; 40 × 44 cm; 30 × 33 cm",
+          "packaging": "16 sets/pallet",
+          "material": "Cement",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_ncm0004_1.png"
+          ]
+        },
+        {
+          "id": "prod-51",
+          "code": "NCM0008",
+          "name": "NCM0008-Tall Tapered Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "50 × 75 cm; 40 × 60 cm; 30 × 45 cm",
+          "packaging": "12 sets/pallet",
+          "material": "Cement",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_ncm0008_1.png"
+          ]
+        },
+        {
+          "id": "prod-52",
+          "code": "NCM0014",
+          "name": "NCM0014-Round Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "51 × 33 cm; 35 × 24 cm; 21 × 14 cm",
+          "packaging": "24 sets/pallet",
+          "material": "Cement",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_ncm0014_1.png"
+          ]
+        },
+        {
+          "id": "prod-53",
+          "code": "NCM0017",
+          "name": "NCM0017-Round Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "57 × 42 cm; 41 × 29 cm; 26 × 18 cm",
+          "packaging": "20 sets/pallet",
+          "material": "Cement",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_ncm0017_1.png"
+          ]
+        },
+        {
+          "id": "prod-54",
+          "code": "NCM0023",
+          "name": "NCM0023-Bell-shape Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "50 × 70 cm; 40 × 60 cm; 30 × 50 cm",
+          "packaging": "12 sets/pallet",
+          "material": "Cement",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_ncm0023_1.png"
+          ]
+        },
+        {
+          "id": "prod-55",
+          "code": "NCM0027",
+          "name": "NCM0027-Urn Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "50 × 50 cm; 40 × 40 cm; 30 × 30 cm; 20 × 20 cm",
+          "packaging": "16 sets/pallet",
+          "material": "Cement",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_ncm0027_1.png"
+          ]
+        },
+        {
+          "id": "prod-56",
+          "code": "NCM0033",
+          "name": "NCM0033-Bowl Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "47 × 41 cm; 37 × 31 cm",
+          "packaging": "20 sets/pallet",
+          "material": "Cement",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_ncm0033-bowl_1.png"
+          ]
+        },
+        {
+          "id": "prod-57",
+          "code": "NCM0033",
+          "name": "NCM0033-Round Planter",
+          "category_id": "fiberstone-cement",
+          "category_title": "Fiberstone & Cement Pots",
+          "dimensions": "49 × 42 cm; 36 × 30 cm; 35 × 21 cm",
+          "packaging": "20 sets/pallet",
+          "material": "Cement",
+          "firing_temp": "",
+          "in_stock": false,
+          "images": [
+            "/images/prod_fiberstone-cement_ncm0033-round_1.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "stock_list": [
+    {
+      "id": "stock-nsl001",
+      "code": "NSL001",
+      "name": "NSL001 Atlantic Planter",
+      "category_title": "Atlantic",
+      "dimensions": "56 × 26 cm; 44 × 17 cm; 30 × 14 cm",
+      "packaging": "32 sets/pallet",
+      "material": "Atlantic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL001 (1).jpg",
+        "/stock-lists/NSL001 (2).jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl002",
+      "code": "NSL002",
+      "name": "NSL002 Atlantic Planter",
+      "category_title": "Atlantic",
+      "dimensions": "53 × 38 cm; 38 × 28 cm; 27 × 27 cm",
+      "packaging": "20 sets/pallet",
+      "material": "Atlantic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL002.jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl003",
+      "code": "NSL003",
+      "name": "NSL003 Atlantic Planter",
+      "category_title": "Atlantic",
+      "dimensions": "44 × 60 cm; 32 × 44 cm",
+      "packaging": "18 sets/pallet",
+      "material": "Atlantic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL003.jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl004",
+      "code": "NSL004",
+      "name": "NSL004 Atlantic Planter",
+      "category_title": "Atlantic",
+      "dimensions": "54 × 85 cm; 42 × 66 cm; 33 × 56 cm",
+      "packaging": "16 sets/pallet",
+      "material": "Atlantic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL004.jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl005",
+      "code": "NSL005",
+      "name": "NSL005 Atlantic Planter",
+      "category_title": "Atlantic",
+      "dimensions": "55 × 51 cm; 36 × 39 cm; 22 × 21 cm",
+      "packaging": "20 sets/pallet",
+      "material": "Atlantic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL005.jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl006",
+      "code": "NSL006",
+      "name": "NSL006 Atlantic Planter",
+      "category_title": "Atlantic",
+      "dimensions": "74 × 90 cm; 44 × 53 cm",
+      "packaging": "4 sets/pallet",
+      "material": "Atlantic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL006.jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl007",
+      "code": "NSL007",
+      "name": "NSL007 Atlantic Planter",
+      "category_title": "Atlantic",
+      "dimensions": "Custom Sizes Available",
+      "packaging": "Contact us for packing dimensions",
+      "material": "Atlantic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL007 (1).jpg",
+        "/stock-lists/NSL007 (2).jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl008",
+      "code": "NSL008",
+      "name": "NSL008 Atlantic Planter",
+      "category_title": "Atlantic",
+      "dimensions": "Custom Sizes Available",
+      "packaging": "Contact us for packing dimensions",
+      "material": "Atlantic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL008.jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl009",
+      "code": "NSL009",
+      "name": "NSL009 Atlantic Planter",
+      "category_title": "Atlantic",
+      "dimensions": "Custom Sizes Available",
+      "packaging": "Contact us for packing dimensions",
+      "material": "Atlantic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL009.jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl010",
+      "code": "NSL010",
+      "name": "NSL010 Glazed Ceramic Planter",
+      "category_title": "Glazed Ceramic",
+      "dimensions": "38 × 31 cm; 29 × 26 cm; 20 × 20 cm",
+      "packaging": "63 sets/pallet",
+      "material": "Glazed Ceramic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL010.jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl011",
+      "code": "NSL011",
+      "name": "NSL011 Glazed Ceramic Planter",
+      "category_title": "Glazed Ceramic",
+      "dimensions": "48 × 40 cm; 38 × 30 cm; 30 × 25 cm; 20 × 20 cm",
+      "packaging": "25 sets/pallet",
+      "material": "Glazed Ceramic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL011.jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl012",
+      "code": "NSL012",
+      "name": "NSL012 Glazed Ceramic Planter",
+      "category_title": "Glazed Ceramic",
+      "dimensions": "40 × 63 cm; 30 × 53 cm",
+      "packaging": "27 sets/pallet",
+      "material": "Glazed Ceramic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NSL012.jpg"
+      ]
+    },
+    {
+      "id": "stock-nsl013",
+      "code": "NSL013",
+      "name": "NSL013 Glazed Ceramic Planter",
+      "category_title": "Glazed Ceramic",
+      "dimensions": "Random sizes (set of 3)",
+      "packaging": "20 pallets / 1 × 40' HC",
+      "material": "Glazed Ceramic",
+      "firing_temp": "",
+      "in_stock": true,
+      "images": [
+        "/stock-lists/NST013.jpg"
+      ]
     }
   ]
 }

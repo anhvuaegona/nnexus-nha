@@ -113,12 +113,12 @@ export default function CollectionView({
                 onClick={() => setSelectedCatId(cat.id)}
                 className="group cursor-pointer bg-white rounded-xl overflow-hidden border border-[#EBE5DB] hover:border-[#C85A32] shadow-sm hover:shadow-lg transition-all p-4 space-y-3 flex flex-col"
               >
-                <div className="relative h-48 rounded-lg overflow-hidden bg-[#F3EFE6]">
+                <div className="relative h-48 rounded-lg overflow-hidden bg-white">
                   {cat.cover_image ? (
                     <img
                       src={cat.cover_image}
                       alt={cat.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-[#8C827A]">
@@ -182,7 +182,7 @@ export default function CollectionView({
                 {/* Product Image Container */}
                 <div 
                   onClick={() => setSelectedProduct(prod)}
-                  className="relative aspect-square bg-[#F3EFE6] overflow-hidden cursor-pointer"
+                  className="relative aspect-square bg-white overflow-hidden cursor-pointer"
                 >
                   <img
                     src={prod.images?.[0] || '/images/home_banner_1.jpg'}

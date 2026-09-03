@@ -35,7 +35,7 @@ export default function App() {
 
   // Load initial data from data.json
   useEffect(() => {
-    const savedCatalog = localStorage.getItem('ctn-nexus-catalog-v1');
+    const savedCatalog = localStorage.getItem('ctn-nexus-catalog-rev2');
     if (savedCatalog) {
       try {
         setData(JSON.parse(savedCatalog));
@@ -43,7 +43,7 @@ export default function App() {
         return;
       } catch (error) {
         console.warn('Could not restore saved catalog:', error);
-        localStorage.removeItem('ctn-nexus-catalog-v1');
+        localStorage.removeItem('ctn-nexus-catalog-rev2');
       }
     }
 
@@ -63,7 +63,7 @@ export default function App() {
     setData((previousData) => {
       const resolvedData = typeof nextData === 'function' ? nextData(previousData) : nextData;
       try {
-        localStorage.setItem('ctn-nexus-catalog-v1', JSON.stringify(resolvedData));
+        localStorage.setItem('ctn-nexus-catalog-rev2', JSON.stringify(resolvedData));
       } catch (error) {
         console.warn('Catalog updated for this session, but browser storage is full:', error);
       }
@@ -154,7 +154,7 @@ export default function App() {
 
         {currentTab === 'stock-list' && (
           <StockListView
-            categories={data?.categories || []}
+            stockProducts={data?.stock_list || []}
             setSelectedProduct={setSelectedProduct}
             addToQuote={addToQuote}
             setCurrentTab={setCurrentTab}

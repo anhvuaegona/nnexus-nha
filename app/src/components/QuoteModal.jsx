@@ -77,7 +77,7 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
               {quoteItems.map((item, idx) => (
                 <div key={idx} className="flex items-center justify-between bg-white p-3 rounded border border-[#EBE5DB] text-xs">
                   <div className="flex items-center gap-3">
-                    <img src={item.images?.[0]} alt="" className="w-12 h-12 object-contain rounded bg-[#F3EFE6]" />
+                    <img src={item.images?.[0]} alt="" className="w-12 h-12 object-contain rounded bg-white" />
                     <div>
                       <h4 className="font-serif font-bold text-[#2A2624]">{item.name}</h4>
                       <p className="text-[11px] text-[#8C827A]">Code: {item.code} | {item.dimensions}</p>
