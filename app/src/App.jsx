@@ -7,7 +7,6 @@ import StockListView from './components/StockListView';
 import VisitView from './components/VisitView';
 import ProductDetailModal from './components/ProductDetailModal';
 import QuoteModal from './components/QuoteModal';
-import AdminDashboard from './components/AdminDashboard';
 
 export default function App() {
   const [data, setData] = useState(null);
@@ -27,26 +26,8 @@ export default function App() {
   const [quoteItems, setQuoteItems] = useState([]);
   const [openQuoteModal, setOpenQuoteModal] = useState(false);
 
-  // Submitted B2B inquiries inbox
-  const [inquiries, setInquiries] = useState([]);
-
-  // WordPress CMS Admin Mode Toggle
-  const [isAdminMode, setIsAdminMode] = useState(false);
-
   // Load initial data from data.json
   useEffect(() => {
-    const savedCatalog = localStorage.getItem('ctn-nexus-catalog-rev2');
-    if (savedCatalog) {
-      try {
-        setData(JSON.parse(savedCatalog));
-        setLoading(false);
-        return;
-      } catch (error) {
-        console.warn('Could not restore saved catalog:', error);
-        localStorage.removeItem('ctn-nexus-catalog-rev2');
-      }
-    }
-
     fetch('/data.json')
       .then((res) => res.json())
       .then((json) => {
@@ -59,18 +40,6 @@ export default function App() {
       });
   }, []);
 
-  const updateData = (nextData) => {
-    setData((previousData) => {
-      const resolvedData = typeof nextData === 'function' ? nextData(previousData) : nextData;
-      try {
-        localStorage.setItem('ctn-nexus-catalog-rev2', JSON.stringify(resolvedData));
-      } catch (error) {
-        console.warn('Catalog updated for this session, but browser storage is full:', error);
-      }
-      return resolvedData;
-    });
-  };
-
   const addToQuote = (product) => {
     setQuoteItems((prev) => [...prev, product]);
     setOpenQuoteModal(true);
@@ -82,10 +51,6 @@ export default function App() {
 
   const clearQuote = () => {
     setQuoteItems([]);
-  };
-
-  const handleAddInquiry = (inquiry) => {
-    setInquiries((prev) => [inquiry, ...prev]);
   };
 
   const openCategory = (categoryId) => {
@@ -102,18 +67,6 @@ export default function App() {
     );
   }
 
-  // If WordPress CMS Admin Mode is active, render Admin Dashboard
-  if (isAdminMode) {
-    return (
-      <AdminDashboard
-        data={data}
-        setData={updateData}
-        setIsAdminMode={setIsAdminMode}
-        inquiries={inquiries}
-      />
-    );
-  }
-
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-[#2A2624] flex flex-col font-sans selection:bg-[#C85A32] selection:text-white">
       {/* Header */}
@@ -122,8 +75,6 @@ export default function App() {
         setCurrentTab={setCurrentTab}
         quoteCount={quoteItems.length}
         setOpenQuoteModal={setOpenQuoteModal}
-        isAdminMode={isAdminMode}
-        setIsAdminMode={setIsAdminMode}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         companyData={data?.company}
@@ -192,7 +143,7 @@ export default function App() {
           removeFromQuote={removeFromQuote}
           clearQuote={clearQuote}
           onClose={() => setOpenQuoteModal(false)}
-          onAddInquiry={handleAddInquiry}
+          recipientEmail={data?.company?.email || 'annychau@ctnnexus.com'}
         />
       )}
     </div>

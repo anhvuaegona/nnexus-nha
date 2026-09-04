@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { X, Trash2, Send, CheckCircle2, ShoppingBag } from 'lucide-react';
 
-export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, onClose, onAddInquiry }) {
+export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, onClose, recipientEmail }) {
   const [submitted, setSubmitted] = useState(false);
+  const [draftEmailUrl, setDraftEmailUrl] = useState('');
   const [customer, setCustomer] = useState({
     name: '',
     company: '',
@@ -14,15 +15,44 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newInquiry = {
-      id: 'INQ-' + Date.now(),
-      date: new Date().toLocaleDateString(),
-      customer,
-      items: quoteItems
-    };
-    onAddInquiry(newInquiry);
+
+    const productDetails = quoteItems.map((item, index) => [
+      `${index + 1}. ${item.name || 'Unnamed product'}`,
+      `   Code: ${item.code || 'N/A'}`,
+      `   Dimensions: ${item.dimensions || 'N/A'}`,
+      `   Material: ${item.material || 'N/A'}`,
+      `   Finish: ${item.finish || 'N/A'}`,
+      `   Packaging: ${item.packaging || 'N/A'}`
+    ].join('\n')).join('\n\n');
+
+    const subject = `Official B2B Quote Request - ${customer.company}`;
+    const body = [
+      'Dear CTN Nexus Export Sales,',
+      '',
+      'I would like to request an official B2B quotation for the following products.',
+      '',
+      'BUSINESS CONTACT DETAILS',
+      `Contact name: ${customer.name}`,
+      `Company: ${customer.company}`,
+      `Business email: ${customer.email}`,
+      `Phone / WhatsApp: ${customer.phone}`,
+      `Port of destination: ${customer.destinationPort || 'Not specified'}`,
+      '',
+      'REQUESTED PRODUCTS',
+      productDetails,
+      '',
+      'ADDITIONAL REQUIREMENTS',
+      customer.notes || 'None',
+      '',
+      'Kind regards,',
+      customer.name
+    ].join('\n');
+
+    const emailUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setDraftEmailUrl(emailUrl);
     setSubmitted(true);
     clearQuote();
+    window.location.href = emailUrl;
   };
 
   return (
@@ -47,13 +77,19 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
         {submitted ? (
           <div className="py-12 text-center space-y-4">
             <CheckCircle2 className="w-16 h-16 text-[#5C6B57] mx-auto animate-bounce" />
-            <h3 className="font-serif text-2xl font-bold text-[#2A2624]">Quote Request Submitted!</h3>
+            <h3 className="font-serif text-2xl font-bold text-[#2A2624]">Your Email Draft Is Ready</h3>
             <p className="text-xs text-[#6B6460] max-w-md mx-auto leading-relaxed">
-              Your inquiry has been successfully sent to CTN Nexus Export Sales (annychau@ctnnexus.com). We will prepare formal trade pricing and container loading estimates for your review.
+              Your email application should now show a prepared quote request addressed to {recipientEmail}. Please review it and press Send to complete your request.
             </p>
+            <a
+              href={draftEmailUrl}
+              className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#A34828] text-[#A34828] text-xs font-semibold rounded hover:bg-[#FAF7F2]"
+            >
+              <Send className="w-4 h-4" /> Open Email Draft Again
+            </a>
             <button
               onClick={onClose}
-              className="px-6 py-2.5 bg-[#A34828] text-white text-xs font-semibold rounded shadow"
+              className="block mx-auto px-6 py-2.5 bg-[#A34828] text-white text-xs font-semibold rounded shadow"
             >
               Done & Return To Store
             </button>

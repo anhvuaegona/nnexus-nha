@@ -114,12 +114,12 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
               onClick={() => openCategory(cat.id)}
               className="group cursor-pointer bg-white rounded-xl overflow-hidden border border-[#EBE5DB] shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
             >
-              <div className="relative h-64 sm:h-72 overflow-hidden bg-white">
+              <div className="relative aspect-[3/4] overflow-hidden bg-white">
                 {cat.cover_image ? (
                   <img
                     src={cat.cover_image}
                     alt={cat.title}
-                    className="w-full h-full object-contain object-center group-hover:scale-[1.02] transition-transform duration-700"
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-[#8C827A]">

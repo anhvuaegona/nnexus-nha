@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Search, ShoppingBag, Settings, Menu, X, ShieldCheck } from 'lucide-react';
+import { Phone, Mail, MapPin, Search, ShoppingBag, Menu, X, ShieldCheck } from 'lucide-react';
 import logoUrl from '../../docs/images/logo.jpeg';
 
 export default function Header({ 
@@ -7,8 +7,6 @@ export default function Header({
   setCurrentTab, 
   quoteCount, 
   setOpenQuoteModal, 
-  isAdminMode, 
-  setIsAdminMode,
   searchQuery,
   setSearchQuery,
   companyData
@@ -46,7 +44,7 @@ export default function Header({
           <div className="flex items-center gap-3 ml-auto">
             <div className="flex items-center gap-1.5 border-r border-[#4A4542] pr-3">
               <a
-                href={companyData?.linkedin || 'https://www.linkedin.com/'}
+                href={companyData?.linkedin || 'https://www.linkedin.com/in/ctn-nexus-81117b431/'}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="CTN Nexus on LinkedIn"
@@ -58,7 +56,7 @@ export default function Header({
                 </svg>
               </a>
               <a
-                href={companyData?.instagram || 'https://www.instagram.com/'}
+                href={companyData?.instagram || 'https://www.instagram.com/ctnnexus/'}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="CTN Nexus on Instagram"
@@ -73,19 +71,6 @@ export default function Header({
             <span className="hidden sm:flex items-center gap-1 text-[11px] bg-[#322E2B] px-2 py-0.5 rounded text-[#D6CEC0]">
               <ShieldCheck className="w-3 h-3 text-[#5C6B57]" /> B2B Global Supplier
             </span>
-            
-            {/* WordPress CMS Mode Switcher Button */}
-            <button
-              onClick={() => setIsAdminMode(!isAdminMode)}
-              className={`flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded transition-all ${
-                isAdminMode 
-                  ? 'bg-[#C85A32] text-white shadow-sm hover:bg-[#A34828]' 
-                  : 'bg-[#3A3532] text-[#E5DFD5] hover:bg-[#4A4542]'
-              }`}
-            >
-              <Settings className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">{isAdminMode ? 'Exit WP Admin Mode' : 'WP Admin CMS Panel'}</span>
-            </button>
           </div>
         </div>
       </div>
@@ -95,7 +80,7 @@ export default function Header({
         {/* Brand Logo */}
         <div 
           className="cursor-pointer flex items-center gap-3 group min-w-0"
-          onClick={() => { setCurrentTab('home'); setIsAdminMode(false); }}
+          onClick={() => setCurrentTab('home')}
         >
           <img src={logoUrl} alt="CTN Nexus logo" className="h-14 sm:h-16 w-auto object-contain" />
           <span className="hidden sm:flex flex-col">
@@ -105,8 +90,7 @@ export default function Header({
         </div>
 
         {/* Desktop Navigation Menu */}
-        {!isAdminMode && (
-          <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -123,14 +107,12 @@ export default function Header({
                 )}
               </button>
             ))}
-          </nav>
-        )}
+        </nav>
 
         {/* Header Action Buttons */}
         <div className="flex items-center space-x-3">
           {/* Search Toggle */}
-          {!isAdminMode && (
-            <div className="relative flex items-center">
+          <div className="relative flex items-center">
               {showSearchInput ? (
                 <div className="flex items-center bg-[#FAF7F2] border border-[#D8D0C5] rounded-full px-3 py-1 animate-fade-in">
                   <Search className="w-4 h-4 text-[#8C827A] mr-2" />
@@ -161,12 +143,10 @@ export default function Header({
                   <Search className="w-5 h-5" />
                 </button>
               )}
-            </div>
-          )}
+          </div>
 
           {/* Quote Basket Badge */}
-          {!isAdminMode && (
-            <button
+          <button
               onClick={() => setOpenQuoteModal(true)}
               className="relative p-2 rounded-full hover:bg-[#FAF7F2] text-[#4A4542] transition-colors flex items-center gap-1"
               title="View B2B Quote Basket"
@@ -178,8 +158,7 @@ export default function Header({
                   {quoteCount}
                 </span>
               )}
-            </button>
-          )}
+          </button>
 
           {/* Mobile Menu Hamburger */}
           <button
@@ -192,7 +171,7 @@ export default function Header({
       </div>
 
       {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && !isAdminMode && (
+      {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-[#EBE5DB] px-6 py-4 space-y-3 animate-fade-in shadow-lg">
           {navItems.map((item) => (
             <button
