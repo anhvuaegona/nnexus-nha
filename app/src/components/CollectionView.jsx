@@ -113,12 +113,12 @@ export default function CollectionView({
                 onClick={() => setSelectedCatId(cat.id)}
                 className="group cursor-pointer bg-white rounded-xl overflow-hidden border border-[#EBE5DB] hover:border-[#C85A32] shadow-sm hover:shadow-lg transition-all p-4 space-y-3 flex flex-col"
               >
-                <div className="relative h-48 rounded-lg overflow-hidden bg-white">
+                <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-white">
                   {cat.cover_image ? (
                     <img
                       src={cat.cover_image}
                       alt={cat.title}
-                      className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-500"
+                      className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-[#8C827A]">
@@ -187,7 +187,7 @@ export default function CollectionView({
                   <img
                     src={prod.images?.[0] || '/images/home_banner_1.jpg'}
                     alt={prod.name}
-                    className="w-full h-full object-contain object-center p-3 group-hover:scale-[1.03] transition-transform duration-700"
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700"
                   />
                   <span className="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded backdrop-blur-sm">
                     {prod.code}

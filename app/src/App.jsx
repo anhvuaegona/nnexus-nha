@@ -8,6 +8,8 @@ import VisitView from './components/VisitView';
 import ProductDetailModal from './components/ProductDetailModal';
 import QuoteModal from './components/QuoteModal';
 
+const QUOTE_STORAGE_KEY = 'ctn-nexus-quote-cart';
+
 export default function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,8 +25,25 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   // Quote cart items
-  const [quoteItems, setQuoteItems] = useState([]);
+  const [quoteItems, setQuoteItems] = useState(() => {
+    try {
+      const savedQuoteItems = JSON.parse(localStorage.getItem(QUOTE_STORAGE_KEY) || '[]');
+      return Array.isArray(savedQuoteItems) ? savedQuoteItems : [];
+    } catch (error) {
+      console.warn('Could not restore the saved quote cart:', error);
+      return [];
+    }
+  });
   const [openQuoteModal, setOpenQuoteModal] = useState(false);
+  const [quoteFeedbackId, setQuoteFeedbackId] = useState(0);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(QUOTE_STORAGE_KEY, JSON.stringify(quoteItems));
+    } catch (error) {
+      console.warn('Could not save the quote cart:', error);
+    }
+  }, [quoteItems]);
 
   // Load initial data from data.json
   useEffect(() => {
@@ -42,7 +61,7 @@ export default function App() {
 
   const addToQuote = (product) => {
     setQuoteItems((prev) => [...prev, product]);
-    setOpenQuoteModal(true);
+    setQuoteFeedbackId((prev) => prev + 1);
   };
 
   const removeFromQuote = (index) => {
@@ -74,6 +93,7 @@ export default function App() {
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
         quoteCount={quoteItems.length}
+        quoteFeedbackId={quoteFeedbackId}
         setOpenQuoteModal={setOpenQuoteModal}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}

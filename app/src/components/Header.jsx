@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Phone, Mail, MapPin, Search, ShoppingBag, Menu, X, ShieldCheck } from 'lucide-react';
 import logoUrl from '../../docs/images/logo.jpeg';
 
@@ -6,6 +6,7 @@ export default function Header({
   currentTab, 
   setCurrentTab, 
   quoteCount, 
+  quoteFeedbackId,
   setOpenQuoteModal, 
   searchQuery,
   setSearchQuery,
@@ -13,6 +14,23 @@ export default function Header({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSearchInput, setShowSearchInput] = useState(false);
+  const [showQuoteFeedback, setShowQuoteFeedback] = useState(false);
+
+  useEffect(() => {
+    if (!quoteFeedbackId) return undefined;
+
+    let timer;
+    setShowQuoteFeedback(false);
+    const animationFrame = window.requestAnimationFrame(() => {
+      setShowQuoteFeedback(true);
+      timer = window.setTimeout(() => setShowQuoteFeedback(false), 2500);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.clearTimeout(timer);
+    };
+  }, [quoteFeedbackId]);
 
   const navItems = [
     { id: 'home', label: 'HOME' },
@@ -146,9 +164,12 @@ export default function Header({
           </div>
 
           {/* Quote Basket Badge */}
-          <button
+          <div className="relative">
+            <button
               onClick={() => setOpenQuoteModal(true)}
-              className="relative p-2 rounded-full hover:bg-[#FAF7F2] text-[#4A4542] transition-colors flex items-center gap-1"
+              className={`relative p-2 rounded-full hover:bg-[#FAF7F2] text-[#4A4542] transition-colors flex items-center gap-1 ${
+                showQuoteFeedback ? 'animate-quote-added' : ''
+              }`}
               title="View B2B Quote Basket"
             >
               <ShoppingBag className="w-5 h-5 text-[#A34828]" />
@@ -158,7 +179,18 @@ export default function Header({
                   {quoteCount}
                 </span>
               )}
-          </button>
+            </button>
+            {showQuoteFeedback && (
+              <div
+                role="status"
+                aria-live="polite"
+                className="absolute top-full right-0 mt-3 w-max max-w-[220px] px-3 py-2 rounded-lg bg-[#A34828] text-white text-[11px] font-semibold shadow-xl animate-fade-in pointer-events-none"
+              >
+                Added to Quote — click here to review
+                <span className="absolute -top-1.5 right-5 w-3 h-3 bg-[#A34828] rotate-45" />
+              </div>
+            )}
+          </div>
 
           {/* Mobile Menu Hamburger */}
           <button

@@ -80,8 +80,27 @@ input, textarea, select {
   50% { opacity: 1; transform: scale(1.03); }
 }
 
+@keyframes quoteAdded {
+  0%, 100% { transform: translateY(0) scale(1); }
+  25% { transform: translateY(-6px) rotate(-8deg) scale(1.12); }
+  50% { transform: translateY(0) rotate(6deg) scale(1.08); }
+  75% { transform: translateY(-3px) rotate(-3deg) scale(1.05); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-quote-added {
+  animation: quoteAdded 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #FAF0EB;
+  box-shadow: 0 0 0 3px rgba(200, 90, 50, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-quote-added {
+    animation: none;
+  }
 }
 
 /* Custom Scrollbar */

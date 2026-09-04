@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Trash2, Send, CheckCircle2, ShoppingBag } from 'lucide-react';
+import { X, Trash2, Send, CheckCircle2, ShoppingBag, Loader2 } from 'lucide-react';
 
 export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, onClose, recipientEmail }) {
   const [submitted, setSubmitted] = useState(false);
@@ -218,8 +218,15 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
                 disabled={isSubmitting}
                 className="w-full py-3 bg-[#A34828] hover:bg-[#8C3B1F] disabled:bg-[#B8AF9F] disabled:cursor-wait text-white font-semibold rounded shadow transition-all flex items-center justify-center gap-2"
               >
-                <Send className="w-4 h-4" />
-                {isSubmitting ? 'Sending Quote Request...' : 'Submit Official B2B Quote Request'}
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" /> Sending Quote Request...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" /> Submit Official B2B Quote Request
+                  </>
+                )}
               </button>
               {submitError && (
                 <p role="alert" className="text-center text-xs text-red-700 bg-red-50 border border-red-200 rounded p-3">
