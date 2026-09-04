@@ -3,7 +3,8 @@ import { X, Trash2, Send, CheckCircle2, ShoppingBag } from 'lucide-react';
 
 export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, onClose, recipientEmail }) {
   const [submitted, setSubmitted] = useState(false);
-  const [draftEmailUrl, setDraftEmailUrl] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [customer, setCustomer] = useState({
     name: '',
     company: '',
@@ -13,8 +14,10 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
     notes: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError('');
 
     const productDetails = quoteItems.map((item, index) => [
       `${index + 1}. ${item.name || 'Unnamed product'}`,
@@ -25,34 +28,40 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
       `   Packaging: ${item.packaging || 'N/A'}`
     ].join('\n')).join('\n\n');
 
-    const subject = `Official B2B Quote Request - ${customer.company}`;
-    const body = [
-      'Dear CTN Nexus Export Sales,',
-      '',
-      'I would like to request an official B2B quotation for the following products.',
-      '',
-      'BUSINESS CONTACT DETAILS',
-      `Contact name: ${customer.name}`,
-      `Company: ${customer.company}`,
-      `Business email: ${customer.email}`,
-      `Phone / WhatsApp: ${customer.phone}`,
-      `Port of destination: ${customer.destinationPort || 'Not specified'}`,
-      '',
-      'REQUESTED PRODUCTS',
-      productDetails,
-      '',
-      'ADDITIONAL REQUIREMENTS',
-      customer.notes || 'None',
-      '',
-      'Kind regards,',
-      customer.name
-    ].join('\n');
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Official B2B Quote Request - ${customer.company}`,
+          _template: 'table',
+          _captcha: 'false',
+          name: customer.name,
+          company: customer.company,
+          email: customer.email,
+          phone: customer.phone,
+          destination_port: customer.destinationPort || 'Not specified',
+          requested_products: productDetails,
+          additional_requirements: customer.notes || 'None'
+        })
+      });
 
-    const emailUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setDraftEmailUrl(emailUrl);
-    setSubmitted(true);
-    clearQuote();
-    window.location.href = emailUrl;
+      const result = await response.json();
+      if (!response.ok || result.success === false || result.success === 'false') {
+        throw new Error(result.message || 'The quote request could not be sent.');
+      }
+
+      setSubmitted(true);
+      clearQuote();
+    } catch (error) {
+      console.error('Could not send quote request:', error);
+      setSubmitError('Unable to send your request right now. Please try again or contact us directly at annychau@ctnnexus.com.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -77,16 +86,10 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
         {submitted ? (
           <div className="py-12 text-center space-y-4">
             <CheckCircle2 className="w-16 h-16 text-[#5C6B57] mx-auto animate-bounce" />
-            <h3 className="font-serif text-2xl font-bold text-[#2A2624]">Your Email Draft Is Ready</h3>
+            <h3 className="font-serif text-2xl font-bold text-[#2A2624]">Quote Request Submitted!</h3>
             <p className="text-xs text-[#6B6460] max-w-md mx-auto leading-relaxed">
-              Your email application should now show a prepared quote request addressed to {recipientEmail}. Please review it and press Send to complete your request.
+              Your inquiry has been sent directly to CTN Nexus Export Sales ({recipientEmail}). We will prepare formal trade pricing and container loading estimates for your review.
             </p>
-            <a
-              href={draftEmailUrl}
-              className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#A34828] text-[#A34828] text-xs font-semibold rounded hover:bg-[#FAF7F2]"
-            >
-              <Send className="w-4 h-4" /> Open Email Draft Again
-            </a>
             <button
               onClick={onClose}
               className="block mx-auto px-6 py-2.5 bg-[#A34828] text-white text-xs font-semibold rounded shadow"
@@ -212,10 +215,17 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
 
               <button
                 type="submit"
-                className="w-full py-3 bg-[#A34828] hover:bg-[#8C3B1F] text-white font-semibold rounded shadow transition-all flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="w-full py-3 bg-[#A34828] hover:bg-[#8C3B1F] disabled:bg-[#B8AF9F] disabled:cursor-wait text-white font-semibold rounded shadow transition-all flex items-center justify-center gap-2"
               >
-                <Send className="w-4 h-4" /> Submit Official B2B Quote Request
+                <Send className="w-4 h-4" />
+                {isSubmitting ? 'Sending Quote Request...' : 'Submit Official B2B Quote Request'}
               </button>
+              {submitError && (
+                <p role="alert" className="text-center text-xs text-red-700 bg-red-50 border border-red-200 rounded p-3">
+                  {submitError}
+                </p>
+              )}
             </form>
           </div>
         )}
