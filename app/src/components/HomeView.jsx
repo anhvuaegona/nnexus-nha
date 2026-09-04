@@ -21,7 +21,7 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
   return (
     <div className="space-y-16 pb-16">
       {/* 1. Hero Banner Slider Section */}
-      <section className="relative w-full h-[60vh] sm:h-[75vh] min-h-[420px] max-h-[700px] overflow-hidden bg-[#1F1C1B]">
+      <section className="relative w-full h-[420px] sm:h-auto sm:aspect-video overflow-hidden bg-[#1F1C1B]">
         {sliders.map((slide, idx) => (
           <div
             key={idx}
@@ -34,7 +34,7 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
             <img
               src={slide}
               alt={`CTN Nexus Banner ${idx + 1}`}
-              className="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[8000ms]"
+              className="w-full h-full object-cover object-center"
             />
             {/* Banner Caption Content */}
             <div className="absolute inset-0 z-20 max-w-7xl mx-auto px-6 flex flex-col justify-center text-white space-y-4">
