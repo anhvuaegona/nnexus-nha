@@ -182,12 +182,12 @@ export default function CollectionView({
                 {/* Product Image Container */}
                 <div 
                   onClick={() => setSelectedProduct(prod)}
-                  className="relative aspect-square bg-white overflow-hidden cursor-pointer"
+                  className="relative aspect-[3/4] bg-white overflow-hidden cursor-pointer"
                 >
                   <img
                     src={prod.images?.[0] || '/images/home_banner_1.jpg'}
                     alt={prod.name}
-                    className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700"
+                    className="w-full h-full object-contain object-center group-hover:scale-[1.03] transition-transform duration-700"
                   />
                   <span className="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded backdrop-blur-sm">
                     {prod.code}

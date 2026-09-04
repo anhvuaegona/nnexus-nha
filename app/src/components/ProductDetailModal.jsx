@@ -24,7 +24,7 @@ export default function ProductDetailModal({ product, onClose, addToQuote }) {
             <img
               src={images[activeImgIdx]}
               alt={product.name}
-              className="w-full h-full object-contain object-center p-3"
+              className="w-full h-full object-cover object-center"
             />
 
             {images.length > 1 && (
@@ -56,7 +56,7 @@ export default function ProductDetailModal({ product, onClose, addToQuote }) {
                     idx === activeImgIdx ? 'border-[#A34828] scale-105' : 'border-transparent opacity-70 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt="" className="w-full h-full object-contain bg-white" />
+                  <img src={img} alt="" className="w-full h-full object-cover object-center bg-white" />
                 </button>
               ))}
             </div>
