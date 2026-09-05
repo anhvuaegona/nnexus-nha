@@ -57,7 +57,6 @@ export default function QuoteModal({ quoteItems, removeFromQuote, clearQuote, on
       setSubmitted(true);
       clearQuote();
     } catch (error) {
-      console.error('Could not send quote request:', error);
       setSubmitError('Unable to send your request right now. Please try again or contact us directly at annychau@ctnnexus.com.');
     } finally {
       setIsSubmitting(false);

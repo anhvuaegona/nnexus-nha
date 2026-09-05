@@ -30,7 +30,6 @@ export default function App() {
       const savedQuoteItems = JSON.parse(localStorage.getItem(QUOTE_STORAGE_KEY) || '[]');
       return Array.isArray(savedQuoteItems) ? savedQuoteItems : [];
     } catch (error) {
-      console.warn('Could not restore the saved quote cart:', error);
       return [];
     }
   });
@@ -40,8 +39,7 @@ export default function App() {
   useEffect(() => {
     try {
       localStorage.setItem(QUOTE_STORAGE_KEY, JSON.stringify(quoteItems));
-    } catch (error) {
-      console.warn('Could not save the quote cart:', error);
+    } catch (_) {
     }
   }, [quoteItems]);
 
@@ -54,7 +52,6 @@ export default function App() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error loading catalog data:', err);
         setLoading(false);
       });
   }, []);

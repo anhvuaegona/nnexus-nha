@@ -61,7 +61,6 @@ export default function VisitView({ companyData }) {
 
       setSubmitted(true);
     } catch (error) {
-      console.error('Could not send appointment request:', error);
       setSubmitError(`Unable to send your request right now. Please try again or contact us directly at ${recipientEmail}.`);
     } finally {
       setIsSubmitting(false);

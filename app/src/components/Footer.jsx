@@ -1,16 +1,50 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle2, Award, Truck, Flame } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, CheckCircle2, Award, Truck, Flame, Loader2 } from 'lucide-react';
 import logoUrl from '../../docs/images/logo.jpeg';
 
 export default function Footer({ companyData, categories, setCurrentTab, openCategory }) {
   const [subscribed, setSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [email, setEmail] = useState('');
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (email) {
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    const recipientEmail = companyData?.email || 'annychau@ctnnexus.com';
+    const requesterEmail = email.trim();
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `B2B Catalog Request - ${requesterEmail}`,
+          _template: 'table',
+          _captcha: 'false',
+          _replyto: requesterEmail,
+          _autoresponse: 'Thank you for requesting the CTN Nexus B2B catalog. Our export team will send the latest catalog, stock list, and trade information to you shortly.',
+          email: requesterEmail,
+          request_type: 'B2B catalog, stock list, and trade price guide'
+        })
+      });
+
+      const result = await response.json();
+      if (!response.ok || result.success === false || result.success === 'false') {
+        throw new Error(result.message || 'The catalog request could not be sent.');
+      }
+
       setSubscribed(true);
       setEmail('');
+    } catch (error) {
+      setSubmitError(`Unable to send your catalog request right now. Please try again or contact us at ${recipientEmail}.`);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -119,7 +153,7 @@ export default function Footer({ companyData, categories, setCurrentTab, openCat
           {subscribed ? (
             <div className="p-3 bg-[#2B3528] border border-[#5C6B57] text-[#A8D59D] rounded text-xs flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 shrink-0" />
-              <span>Thank you! Your catalog link has been sent to your email.</span>
+              <span>Thank you! Your catalog request has been sent. Our team will email you shortly.</span>
             </div>
           ) : (
             <form onSubmit={handleSubscribe} className="space-y-2">
@@ -134,11 +168,18 @@ export default function Footer({ companyData, categories, setCurrentTab, openCat
                 />
                 <button
                   type="submit"
-                  className="absolute right-1 top-1 bottom-1 px-3 bg-[#C85A32] hover:bg-[#A34828] text-white rounded transition-colors"
+                  disabled={isSubmitting}
+                  aria-label="Send B2B catalog request"
+                  className="absolute right-1 top-1 bottom-1 px-3 bg-[#C85A32] hover:bg-[#A34828] disabled:bg-[#766C64] disabled:cursor-wait text-white rounded transition-colors"
                 >
-                  <Send className="w-3.5 h-3.5" />
+                  {isSubmitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Send className="w-3.5 h-3.5" />}
                 </button>
               </div>
+              {submitError && (
+                <p role="alert" className="rounded border border-red-900/60 bg-red-950/40 p-2 text-[10px] leading-relaxed text-red-200">
+                  {submitError}
+                </p>
+              )}
               <p className="text-[10px] text-[#7A7268]">Strictly for wholesale & trade inquiries.</p>
             </form>
           )}
