@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Phone, Mail, MapPin, Search, ShoppingBag, Menu, X, ShieldCheck } from 'lucide-react';
 import logoUrl from '../../docs/images/logo.jpeg';
 
-export default function Header({ 
-  currentTab, 
-  setCurrentTab, 
-  quoteCount, 
+export default function Header({
+  currentTab,
+  setCurrentTab,
+  quoteCount,
   quoteFeedbackId,
-  setOpenQuoteModal, 
+  setOpenQuoteModal,
   searchQuery,
   setSearchQuery,
   companyData
@@ -94,9 +94,9 @@ export default function Header({
       </div>
 
       {/* Main Header */}
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-1 py-1 flex items-center justify-between gap-4">
         {/* Brand Logo */}
-        <div 
+        <div
           className="cursor-pointer flex items-center gap-3 group min-w-0"
           onClick={() => setCurrentTab('home')}
         >
@@ -109,67 +109,65 @@ export default function Header({
 
         {/* Desktop Navigation Menu */}
         <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => setCurrentTab(item.id)}
-                className={`text-sm font-semibold tracking-wider transition-colors py-1 relative ${
-                  currentTab === item.id 
-                    ? 'text-[#A34828] font-bold' 
-                    : 'text-[#4A4542] hover:text-[#A34828]'
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setCurrentTab(item.id)}
+              className={`text-sm font-semibold tracking-wider transition-colors py-1 relative ${currentTab === item.id
+                ? 'text-[#A34828] font-bold'
+                : 'text-[#4A4542] hover:text-[#A34828]'
                 }`}
-              >
-                {item.label}
-                {currentTab === item.id && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#A34828] rounded-full animate-fade-in" />
-                )}
-              </button>
-            ))}
+            >
+              {item.label}
+              {currentTab === item.id && (
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#A34828] rounded-full animate-fade-in" />
+              )}
+            </button>
+          ))}
         </nav>
 
         {/* Header Action Buttons */}
         <div className="flex items-center space-x-3">
           {/* Search Toggle */}
           <div className="relative flex items-center">
-              {showSearchInput ? (
-                <div className="flex items-center bg-[#FAF7F2] border border-[#D8D0C5] rounded-full px-3 py-1 animate-fade-in">
-                  <Search className="w-4 h-4 text-[#8C827A] mr-2" />
-                  <input
-                    type="text"
-                    placeholder="Search pots or code (e.g. NGC0005)..."
-                    value={searchQuery}
-                    onChange={(e) => {
-                      setSearchQuery(e.target.value);
-                      if (currentTab !== 'collection') setCurrentTab('collection');
-                    }}
-                    className="bg-transparent text-xs text-[#2A2624] focus:outline-none w-36 sm:w-48"
-                    autoFocus
-                  />
-                  <button 
-                    onClick={() => { setShowSearchInput(false); setSearchQuery(''); }}
-                    className="text-[#8C827A] hover:text-[#2A2624] ml-1"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              ) : (
+            {showSearchInput ? (
+              <div className="flex items-center bg-[#FAF7F2] border border-[#D8D0C5] rounded-full px-3 py-1 animate-fade-in">
+                <Search className="w-4 h-4 text-[#8C827A] mr-2" />
+                <input
+                  type="text"
+                  placeholder="Search pots or code (e.g. NGC0005)..."
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    if (currentTab !== 'collection') setCurrentTab('collection');
+                  }}
+                  className="bg-transparent text-xs text-[#2A2624] focus:outline-none w-36 sm:w-48"
+                  autoFocus
+                />
                 <button
-                  onClick={() => setShowSearchInput(true)}
-                  className="p-2 rounded-full hover:bg-[#FAF7F2] text-[#4A4542] transition-colors"
-                  title="Search Pots"
+                  onClick={() => { setShowSearchInput(false); setSearchQuery(''); }}
+                  className="text-[#8C827A] hover:text-[#2A2624] ml-1"
                 >
-                  <Search className="w-5 h-5" />
+                  <X className="w-3.5 h-3.5" />
                 </button>
-              )}
+              </div>
+            ) : (
+              <button
+                onClick={() => setShowSearchInput(true)}
+                className="p-2 rounded-full hover:bg-[#FAF7F2] text-[#4A4542] transition-colors"
+                title="Search Pots"
+              >
+                <Search className="w-5 h-5" />
+              </button>
+            )}
           </div>
 
           {/* Quote Basket Badge */}
           <div className="relative">
             <button
               onClick={() => setOpenQuoteModal(true)}
-              className={`relative p-2 rounded-full hover:bg-[#FAF7F2] text-[#4A4542] transition-colors flex items-center gap-1 ${
-                showQuoteFeedback ? 'animate-quote-added' : ''
-              }`}
+              className={`relative p-2 rounded-full hover:bg-[#FAF7F2] text-[#4A4542] transition-colors flex items-center gap-1 ${showQuoteFeedback ? 'animate-quote-added' : ''
+                }`}
               title="View B2B Quote Basket"
             >
               <ShoppingBag className="w-5 h-5 text-[#A34828]" />
@@ -212,9 +210,8 @@ export default function Header({
                 setCurrentTab(item.id);
                 setMobileMenuOpen(false);
               }}
-              className={`block w-full text-left py-2 text-base font-medium border-b border-[#F5F0E8] ${
-                currentTab === item.id ? 'text-[#A34828] font-bold' : 'text-[#4A4542]'
-              }`}
+              className={`block w-full text-left py-2 text-base font-medium border-b border-[#F5F0E8] ${currentTab === item.id ? 'text-[#A34828] font-bold' : 'text-[#4A4542]'
+                }`}
             >
               {item.label}
             </button>
