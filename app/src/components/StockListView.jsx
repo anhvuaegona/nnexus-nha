@@ -62,7 +62,7 @@ export default function StockListView({ stockProducts, setSelectedProduct, addTo
                   </span>
                   <h3 
                     onClick={() => setSelectedProduct(prod)}
-                    className="font-serif text-base font-bold text-[#2A2624] line-clamp-1 cursor-pointer hover:text-[#5C6B57]"
+                    className="font-serif text-base font-bold text-[#2A2624] break-words cursor-pointer hover:text-[#5C6B57]"
                   >
                     {prod.name}
                   </h3>

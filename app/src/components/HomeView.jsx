@@ -184,7 +184,7 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
                 </div>
 
                 <div>
-                  <h4 className="font-serif text-sm font-bold text-[#2A2624] line-clamp-1 group-hover:text-[#A34828]">
+                  <h4 className="font-serif text-sm font-bold text-[#2A2624] break-words group-hover:text-[#A34828]">
                     {prod.name}
                   </h4>
                   <p className="text-[11px] text-[#8C827A] mt-0.5">{prod.dimensions}</p>

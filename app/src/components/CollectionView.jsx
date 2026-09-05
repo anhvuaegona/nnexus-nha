@@ -209,7 +209,7 @@ export default function CollectionView({
                     </span>
                     <h3 
                       onClick={() => setSelectedProduct(prod)}
-                      className="font-serif text-base font-bold text-[#2A2624] line-clamp-1 cursor-pointer hover:text-[#A34828] transition-colors"
+                      className="font-serif text-base font-bold text-[#2A2624] break-words cursor-pointer hover:text-[#A34828] transition-colors"
                     >
                       {prod.name}
                     </h3>

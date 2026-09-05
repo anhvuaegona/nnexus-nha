@@ -1,20 +1,71 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, CheckCircle2, Send, Building2 } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, CheckCircle2, Send, Building2, Loader2 } from 'lucide-react';
+
+const EMPTY_FORM_DATA = {
+  name: '',
+  company: '',
+  email: '',
+  phone: '',
+  visitDate: '',
+  message: ''
+};
 
 export default function VisitView({ companyData }) {
-  const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    visitDate: '',
-    message: ''
-  });
+  const today = new Date();
+  today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+  const minimumVisitDate = today.toISOString().split('T')[0];
 
-  const handleSubmit = (e) => {
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [formData, setFormData] = useState(EMPTY_FORM_DATA);
+
+  const resetForm = () => {
+    setFormData({ ...EMPTY_FORM_DATA });
+    setSubmitError('');
+    setSubmitted(false);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    const recipientEmail = companyData?.email || 'annychau@ctnnexus.com';
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Showroom Tour Request - ${formData.company}`,
+          _template: 'table',
+          _captcha: 'false',
+          _replyto: formData.email,
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          phone: formData.phone,
+          preferred_visit_date: formData.visitDate || 'Not specified',
+          message: formData.message || 'No additional message'
+        })
+      });
+
+      const result = await response.json();
+      if (!response.ok || result.success === false || result.success === 'false') {
+        throw new Error(result.message || 'The appointment request could not be sent.');
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Could not send appointment request:', error);
+      setSubmitError(`Unable to send your request right now. Please try again or contact us directly at ${recipientEmail}.`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -127,7 +178,8 @@ export default function VisitView({ companyData }) {
                 Thank you for contacting CTN Nexus. Our export management team will confirm your visit details via email within 24 hours.
               </p>
               <button
-                onClick={() => setSubmitted(false)}
+                type="button"
+                onClick={resetForm}
                 className="px-4 py-2 bg-[#A34828] text-white text-xs font-semibold rounded"
               >
                 Submit Another Request
@@ -191,6 +243,7 @@ export default function VisitView({ companyData }) {
                 <label className="font-semibold text-[#2A2624]">Preferred Visit Date</label>
                 <input
                   type="date"
+                  min={minimumVisitDate}
                   value={formData.visitDate}
                   onChange={(e) => setFormData({ ...formData, visitDate: e.target.value })}
                   className="w-full px-3 py-2.5 bg-[#FAF7F2] border border-[#EBE5DB] rounded focus:outline-none focus:border-[#C85A32]"
@@ -210,10 +263,24 @@ export default function VisitView({ companyData }) {
 
               <button
                 type="submit"
-                className="w-full py-3 bg-[#A34828] hover:bg-[#8C3B1F] text-white font-semibold rounded shadow transition-all flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="w-full py-3 bg-[#A34828] hover:bg-[#8C3B1F] disabled:bg-[#B8AF9F] disabled:cursor-wait text-white font-semibold rounded shadow transition-all flex items-center justify-center gap-2"
               >
-                <Send className="w-4 h-4" /> Send Appointment Request
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" /> Sending Appointment Request...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" /> Send Appointment Request
+                  </>
+                )}
               </button>
+              {submitError && (
+                <p role="alert" className="text-center text-xs text-red-700 bg-red-50 border border-red-200 rounded p-3">
+                  {submitError}
+                </p>
+              )}
             </form>
           )}
         </div>

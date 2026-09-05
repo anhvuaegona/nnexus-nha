@@ -1,135 +1,219 @@
-import { useState } from 'react';
-import { X, Flame, Shield, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import {
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  Flame,
+  Package,
+  Plus,
+  Shield,
+  X
+} from 'lucide-react';
 
 export default function ProductDetailModal({ product, onClose, addToQuote }) {
   const [activeImgIdx, setActiveImgIdx] = useState(0);
+
+  useEffect(() => {
+    setActiveImgIdx(0);
+  }, [product?.id]);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
+    };
+
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
+
   if (!product) return null;
 
   const images = product.images?.length ? product.images : ['/images/home_banner_1.jpg'];
+  const showPreviousImage = () => {
+    setActiveImgIdx((prev) => (prev - 1 + images.length) % images.length);
+  };
+  const showNextImage = () => {
+    setActiveImgIdx((prev) => (prev + 1) % images.length);
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#EBE5DB] relative flex flex-col md:flex-row my-auto">
-        {/* Close Button */}
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black/70 p-0 backdrop-blur-sm animate-fade-in sm:p-4 lg:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="product-detail-title"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div className="relative flex h-full w-full flex-col overflow-y-auto bg-white shadow-2xl sm:h-[min(92dvh,900px)] sm:max-w-[1400px] sm:rounded-2xl sm:border sm:border-[#EBE5DB] lg:flex-row lg:overflow-hidden">
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/10 hover:bg-black/20 text-[#2A2624] transition-colors"
+          className="absolute right-3 top-3 z-30 rounded-full bg-white/90 p-2.5 text-[#2A2624] shadow-md ring-1 ring-black/10 transition-colors hover:bg-[#F1ECE4] sm:right-4 sm:top-4"
+          aria-label="Close product details"
         >
-          <X className="w-5 h-5" />
+          <X className="h-5 w-5" />
         </button>
 
-        {/* Left Gallery Section */}
-        <div className="w-full md:w-1/2 p-6 bg-white flex flex-col justify-between space-y-4">
-          <div className="relative aspect-square rounded-xl overflow-hidden bg-white border border-[#EEEEEE]">
+        {/* Full product gallery: object-contain keeps every edge of the photo visible. */}
+        <section className="flex w-full shrink-0 flex-col border-b border-[#EBE5DB] bg-[#FAF7F2] p-3 sm:p-5 lg:h-full lg:w-[58%] lg:min-w-0 lg:border-b-0 lg:border-r lg:p-6">
+          <div className="relative flex h-[52dvh] min-h-[300px] flex-1 items-center justify-center overflow-hidden rounded-xl border border-[#EBE5DB] bg-white lg:h-auto lg:min-h-0">
             <img
               src={images[activeImgIdx]}
-              alt={product.name}
-              className="w-full h-full object-cover object-center"
+              alt={`${product.name} - image ${activeImgIdx + 1} of ${images.length}`}
+              className="h-full w-full object-contain object-center p-2 sm:p-4"
             />
 
             {images.length > 1 && (
               <>
                 <button
-                  onClick={() => setActiveImgIdx((prev) => (prev - 1 + images.length) % images.length)}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-white/80 text-[#2A2624] shadow hover:bg-white"
+                  type="button"
+                  onClick={showPreviousImage}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 text-[#2A2624] shadow-md ring-1 ring-black/10 hover:bg-white"
+                  aria-label="Previous product image"
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="h-5 w-5" />
                 </button>
                 <button
-                  onClick={() => setActiveImgIdx((prev) => (prev + 1) % images.length)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-white/80 text-[#2A2624] shadow hover:bg-white"
+                  type="button"
+                  onClick={showNextImage}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 text-[#2A2624] shadow-md ring-1 ring-black/10 hover:bg-white"
+                  aria-label="Next product image"
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="h-5 w-5" />
                 </button>
+                <span className="absolute bottom-3 right-3 rounded-full bg-black/65 px-2.5 py-1 text-[11px] font-semibold text-white">
+                  {activeImgIdx + 1} / {images.length}
+                </span>
               </>
             )}
           </div>
 
-          {/* Thumbnail Strip */}
           {images.length > 1 && (
-            <div className="flex items-center gap-2 overflow-x-auto pb-1">
+            <div className="mt-3 flex shrink-0 items-center gap-2 overflow-x-auto p-1 sm:mt-4">
               {images.map((img, idx) => (
                 <button
-                  key={idx}
+                  type="button"
+                  key={`${img}-${idx}`}
                   onClick={() => setActiveImgIdx(idx)}
-                  className={`w-14 h-14 rounded-lg overflow-hidden border-2 transition-all shrink-0 ${
-                    idx === activeImgIdx ? 'border-[#A34828] scale-105' : 'border-transparent opacity-70 hover:opacity-100'
+                  className={`h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-white transition-all sm:h-20 sm:w-20 ${
+                    idx === activeImgIdx
+                      ? 'ring-2 ring-[#A34828] ring-offset-2'
+                      : 'opacity-70 ring-1 ring-[#D8D0C5] hover:opacity-100'
                   }`}
+                  aria-label={`View product image ${idx + 1}`}
+                  aria-current={idx === activeImgIdx ? 'true' : undefined}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover object-center bg-white" />
+                  <img src={img} alt="" className="h-full w-full bg-white object-contain object-center p-1" />
                 </button>
               ))}
             </div>
           )}
-        </div>
+        </section>
 
-        {/* Right Product Details & Specs Table Section */}
-        <div className="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between space-y-6">
-          <div className="space-y-4">
-            <div>
-              <span className="text-xs uppercase tracking-widest font-bold text-[#C85A32]">
+        {/* Product information */}
+        <section className="flex w-full flex-1 flex-col bg-white lg:h-full lg:min-h-0 lg:w-[42%]">
+          <div className="flex-1 space-y-6 p-5 pr-14 sm:p-8 sm:pr-16 lg:min-h-0 lg:overflow-y-auto lg:p-10 lg:pr-16">
+            <header>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#C85A32]">
                 {product.category_title}
               </span>
-              <h2 className="font-serif text-2xl font-bold text-[#2A2624] mt-1">
+              <h2 id="product-detail-title" className="mt-2 break-words font-serif text-2xl font-bold text-[#2A2624] sm:text-3xl">
                 {product.name}
               </h2>
-              <p className="text-xs text-[#8C827A] mt-0.5">
+              <p className="mt-1 text-sm text-[#8C827A]">
                 Model Code: <strong className="text-[#2A2624]">{product.code}</strong>
               </p>
-            </div>
+            </header>
 
-            {/* Specifications Table */}
-            <div className="bg-[#FAF7F2] border border-[#EBE5DB] rounded-lg p-4 space-y-2 text-xs">
-              <h4 className="font-serif font-bold text-[#2A2624] text-sm border-b border-[#EBE5DB] pb-2">
+            <div className="space-y-3 rounded-xl border border-[#EBE5DB] bg-[#FAF7F2] p-4 text-sm sm:p-5">
+              <h3 className="border-b border-[#EBE5DB] pb-3 font-serif text-base font-bold text-[#2A2624]">
                 Technical Specifications
-              </h4>
-              <div className="grid grid-cols-2 gap-y-2 pt-1 text-[#4A4542]">
-                <span className="text-[#8C827A]">Dimensions:</span>
-                <span className="font-semibold">{product.dimensions}</span>
+              </h3>
+              <dl className="grid grid-cols-[minmax(110px,0.8fr)_minmax(0,1.2fr)] gap-x-4 gap-y-3 pt-1 text-[#4A4542]">
+                <dt className="text-[#8C827A]">Dimensions</dt>
+                <dd className="break-words font-semibold">{product.dimensions || 'Contact us for dimensions'}</dd>
 
-                <span className="text-[#8C827A]">Material:</span>
-                <span className="font-semibold">{product.material || 'Stoneware Clay'}</span>
+                <dt className="text-[#8C827A]">Material</dt>
+                <dd className="break-words font-semibold">{product.material || 'Stoneware Clay'}</dd>
 
-                {product.firing_temp && (
+                {product.finish && (
                   <>
-                    <span className="text-[#8C827A]">Firing Temperature:</span>
-                    <span className="font-semibold text-[#A34828]">{product.firing_temp}</span>
+                    <dt className="text-[#8C827A]">Finish</dt>
+                    <dd className="break-words font-semibold">{product.finish}</dd>
                   </>
                 )}
 
-                <span className="text-[#8C827A]">Packaging:</span>
-                <span className="font-semibold">{product.packaging || 'Contact us for packing dimensions'}</span>
-              </div>
+                {product.firing_temp && (
+                  <>
+                    <dt className="text-[#8C827A]">Firing Temperature</dt>
+                    <dd className="break-words font-semibold text-[#A34828]">{product.firing_temp}</dd>
+                  </>
+                )}
+
+                <dt className="text-[#8C827A]">Packaging</dt>
+                <dd className="break-words font-semibold">{product.packaging || 'Contact us for packing dimensions'}</dd>
+
+                {typeof product.in_stock === 'boolean' && (
+                  <>
+                    <dt className="text-[#8C827A]">Availability</dt>
+                    <dd className={`font-semibold ${product.in_stock ? 'text-[#5C6B57]' : 'text-[#8C827A]'}`}>
+                      {product.in_stock ? 'In stock' : 'Made to order'}
+                    </dd>
+                  </>
+                )}
+              </dl>
             </div>
 
-            <div className="space-y-2 text-xs text-[#6B6460]">
-              <p className="flex items-center gap-2">
-                <Flame className="w-4 h-4 text-[#C85A32]" /> Frost-resistant & frost-proof for extreme outdoor weather.
+            <div className="space-y-3 text-sm leading-relaxed text-[#6B6460]">
+              <p className="flex items-start gap-3">
+                <Flame className="mt-0.5 h-5 w-5 shrink-0 text-[#C85A32]" />
+                <span>Frost-resistant & frost-proof for extreme outdoor weather.</span>
               </p>
-              <p className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-[#5C6B57]" /> Handcrafted in Vietnam with custom glaze matching options.
+              <p className="flex items-start gap-3">
+                <Shield className="mt-0.5 h-5 w-5 shrink-0 text-[#5C6B57]" />
+                <span>Handcrafted in Vietnam with custom glaze matching options.</span>
+              </p>
+              <p className="flex items-start gap-3">
+                <Package className="mt-0.5 h-5 w-5 shrink-0 text-[#C59B27]" />
+                <span>Export-ready packaging for pallet and container shipments.</span>
               </p>
             </div>
+
+            {product.in_stock && (
+              <div className="flex items-center gap-2 rounded-lg border border-[#CBD5C7] bg-[#F2F6F0] px-4 py-3 text-sm font-semibold text-[#4F604A]">
+                <CheckCircle2 className="h-5 w-5 shrink-0" /> Ready for shipment
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-[#F5F0E8] flex items-center gap-3">
+          <footer className="sticky bottom-0 flex shrink-0 flex-col gap-3 border-t border-[#EBE5DB] bg-white/95 p-4 backdrop-blur-sm sm:flex-row sm:p-6 lg:static lg:px-10">
             <button
+              type="button"
               onClick={() => {
                 addToQuote(product);
                 onClose();
               }}
-              className="flex-1 py-3 bg-[#A34828] hover:bg-[#8C3B1F] text-white font-semibold text-xs rounded-lg shadow-md transition-all flex items-center justify-center gap-2"
+              className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#A34828] py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-[#8C3B1F]"
             >
-              <Plus className="w-4 h-4" /> Add To B2B Quote
+              <Plus className="h-4 w-4" /> Add To B2B Quote
             </button>
             <button
+              type="button"
               onClick={onClose}
-              className="px-4 py-3 bg-[#FAF7F2] hover:bg-[#EBE5DB] text-[#4A4542] font-semibold text-xs rounded-lg border border-[#EBE5DB]"
+              className="rounded-lg border border-[#EBE5DB] bg-[#FAF7F2] px-5 py-3.5 text-sm font-semibold text-[#4A4542] hover:bg-[#EBE5DB]"
             >
               Close
             </button>
-          </div>
-        </div>
+          </footer>
+        </section>
       </div>
     </div>
   );
