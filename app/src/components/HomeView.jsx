@@ -21,21 +21,26 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
   return (
     <div className="space-y-16 pb-16">
       {/* 1. Hero Banner Slider Section */}
-      <section className="relative w-full h-[420px] sm:h-auto sm:aspect-video overflow-hidden bg-[#1F1C1B]">
+      <section className="relative aspect-[1024/572] min-h-[400px] max-h-[600px] w-full overflow-hidden bg-[#1F1C1B]">
         {sliders.map((slide, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-            }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
           >
-            {/* Image Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent z-10" />
+            {/* A soft cover layer fills wide screens while the foreground keeps the whole pot visible. */}
+            <img
+              src={slide}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full scale-110 object-cover object-center opacity-90 blur-lg brightness-90 saturate-100"
+            />
             <img
               src={slide}
               alt={`CTN Nexus Banner ${idx + 1}`}
-              className="w-full h-full object-cover object-center"
+              className="relative h-full w-full object-contain object-center"
             />
+            <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/60 via-black/25 to-transparent" />
             {/* Banner Caption Content */}
             <div className="absolute inset-0 z-20 max-w-7xl mx-auto px-6 flex flex-col justify-center text-white space-y-4">
               <p className="text-base sm:text-xl text-[#F3EEE7] max-w-2xl font-light leading-relaxed drop-shadow-lg">
@@ -79,9 +84,8 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`h-2 rounded-full transition-all ${
-                idx === currentSlide ? 'w-8 bg-[#C85A32]' : 'w-2 bg-white/50 hover:bg-white/80'
-              }`}
+              className={`h-2 rounded-full transition-all ${idx === currentSlide ? 'w-8 bg-[#C85A32]' : 'w-2 bg-white/50 hover:bg-white/80'
+                }`}
             />
           ))}
         </div>
@@ -127,7 +131,7 @@ export default function HomeView({ data, setCurrentTab, setSelectedProduct, open
                   </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                
+
                 <div className="absolute bottom-4 left-4 right-4 text-white space-y-1">
                   <h3 className="font-serif text-xl font-bold text-white group-hover:text-[#F3D7C6] transition-colors">
                     {cat.title}
